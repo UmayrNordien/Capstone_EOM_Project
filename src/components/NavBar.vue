@@ -53,7 +53,7 @@ export default {
 .lines {
   width: 25px;
   height: 3px;
-  background: #596778;
+  background: #000000;
   display: block;
   position: absolute;
   top: 50%;
@@ -110,13 +110,13 @@ export default {
 }
 
 
-/* .menu-item {
+.menu-item {
    transition: all 0.1s ease 0s;
-} */
+}
 
 .menu-item:hover {
   background: #EEEEEE;
-  color: #3290B1;
+  color: #000000;
 }
 
 .menu-item:nth-child(3) {
@@ -234,87 +234,64 @@ export default {
   transform: translate3d(-0.25084px, -104.9997px, 0);
 }
 
-/* https://www.schemecolor.com/sweet-surrender.php */
+/* https://coolors.co/palette/fd0363-cc095d-9c1057-6b1650-3b1d4a-0a2344 */
 .blue {
-  background-color: #EE8F90; /* Ruddy Pink  */
+  background-color: #FD0363;
   box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
 }
-
-/* .blue:hover {
-  color: #669AE1;
-  text-shadow: none;
-} */
 
 .green {
-  background-color: #FADB75; /* Crayola's Dandelion */
+  background-color: #CC095D; 
   box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
 }
-
-/* .green:hover {
-  color: #70CC72;
-  text-shadow: none;
-} */
 
 .red {
-  background-color: #9C84B3; /* Lavender Purple */
+  background-color: #9C1057;
   box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
 }
-
-/* .red:hover {
-  color: #FE4365;
-  text-shadow: none;
-} */
 
 .purple {
-  background-color: #7AC1C1; /* Moonstone Blue */
+  background-color: #6B1650; 
   box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
-}
-
-.purple:hover {
-  color: #C49CDE;
-  text-shadow: none;
 }
 
 .orange {
-  background-color: #FC913A;
+  background-color: #3B1D4A;
   box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
-}
-
-.orange:hover {
-  color: #FC913A;
-  text-shadow: none;
 }
 
 .lightblue {
-  background-color: #62C2E4;
+  background-color: #0A2344;
   box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
 }
 
-.lightblue:hover {
-  color: #62C2E4;
-  text-shadow: none;
-}
 
-.credit {
-  margin: 24px 20px 120px 0;
-  text-align: right;
-  color: #EEEEEE;
-}
+/* Styling the links */
 
-.credit a {
-  padding: 8px 0;
-  color: #C49CDE;
+/*remove link underline*/
+a{
   text-decoration: none;
-  transition: all 0.3s ease 0s;
 }
-
-.credit a:hover {
-  text-decoration: underline;
+/* unvisited link */
+a:link {
+color: #000000;
+}
+/* visited link */
+a:visited {
+color: #EEEEEE;
+}
+/* mouse over link */
+a:hover {
+color: #000000;
+}
+/* selected link */
+a:active {
+color: #000000;
 }
 </style>

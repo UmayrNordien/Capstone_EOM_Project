@@ -1,16 +1,18 @@
 <template>
-    <div>
-        <h1>Products</h1>
-        <NavBar></NavBar>
-    </div>
-</template>
+<div>
+  <h1>Products</h1>
+</div>
+<NavBar></NavBar>
+  </template>
+  
+  <script>
+import NavBar from '@/components/NavBar.vue';
 
-<script>
-import NavBar from '../components/NavBar.vue'
-
-export default {
-    components: {
-        NavBar
-    }
+  export default {
+    components: { NavBar }
 }
-</script>
+  </script>
+  
+  <style scoped>
+  </style>
+  
