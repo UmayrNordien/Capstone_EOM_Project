@@ -1,5 +1,6 @@
-body{
-    font-family: 'Caveat', cursive;
-    font-family: 'Pathway Gothic One', sans-serif;
-    font-family: 'Sedgwick Ave Display', cursive;
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@1,700&display=swap');
+/* Colors Used */
+/* https://coolors.co/palette/fd0363-cc095d-9c1057-6b1650-3b1d4a-0a2344 */
+h6, span{
+    font-family: 'PT Serif', serif !important;
 }

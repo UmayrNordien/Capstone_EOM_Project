@@ -53,27 +53,6 @@ export default {
 </script>
 
 <style scoped>
-h6{
-  margin-left: 5px;
-  font-size: 18px;
-  color: #ffffff !important;
-  text-align: center;
-  animation: glow 1s ease-in-out infinite alternate;
-}
-h6:hover{
-  transform: scale(1.1);
-  color:#FD0363 !important;
-}
-/* @-webkit-keyframes h6 {
-  from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #CC095D, 0 0 40px #CC095D, 0 0 50px #CC095D, 0 0 60px #CC095D, 0 0 70px #CC095D;
-  }
-  
-  to {
-    text-shadow: 0 0 20px #fff, 0 0 30px #FD0363, 0 0 40px #FD0363, 0 0 50px #FD0363, 0 0 60px #FD0363, 0 0 70px #FD0363, 0 0 80px #FD0363;
-  }
-} */
-
 #home {
   background: url(https://i.postimg.cc/HsWrwPb8/shapelined-JBKdviwe-XI-unsplash.jpg);
   background-size: cover;
@@ -215,7 +194,57 @@ h6:hover{
   border-radius: 50%;
   background-position: center;
   background-size: contain; 
-}</style>
+}
+
+h6{
+  margin-left: 5px;
+  font-size: 18px;
+  color: #ffffff !important;
+  text-align: center;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+.card:hover h6 {
+  transform: scale(1.1);
+  color: #FD0363 !important;
+  text-shadow: 0 0 20px #FD0363, 0 0 30px #FD0363, 0 0 40px #FD0363, 0 0 50px #FD0363, 0 0 60px #FD0363, 0 0 70px #FD0363, 0 0 80px #FD0363;
+  transition: 1s;
+}
+
+/* gradient color loop for h6 */
+.card:hover h6 {
+  animation: gradient 2s linear infinite;
+}
+@keyframes gradient {
+  0% {
+    color: #FD0363;
+    text-shadow: 0 0 10px #FD0363;
+  }
+  17% {
+    color: #CC095D;
+    text-shadow: 0 0 10px #CC095D;
+  }
+  34% {
+    color: #9C1057;
+    text-shadow: 0 0 10px #9C1057;
+  }
+  51% {
+    color: #6B1650;
+    text-shadow: 0 0 10px #6B1650;
+  }
+  68% {
+    color: #3B1D4A;
+    text-shadow: 0 0 10px #3B1D4A;
+  }
+  85% {
+    color: #0A2344;
+    text-shadow: 0 0 10px #0A2344;
+  }
+  100% {
+    color: #FD0363;
+    text-shadow: 0 0 10px #FD0363;
+  }
+}
+</style>
 
 
 
