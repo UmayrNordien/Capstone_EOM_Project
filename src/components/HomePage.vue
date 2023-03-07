@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="card" >
-        <h6 class="title">Best Selling</h6>
+        <h6 class="title">Trending</h6>
         <div class="bar">
           <div class="emptybar"></div>
           <div class="filledbar"></div>
@@ -53,6 +53,27 @@ export default {
 </script>
 
 <style scoped>
+h6{
+  margin-left: 5px;
+  font-size: 18px;
+  color: #ffffff !important;
+  text-align: center;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+h6:hover{
+  transform: scale(1.1);
+  color:#FD0363 !important;
+}
+/* @-webkit-keyframes h6 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #CC095D, 0 0 40px #CC095D, 0 0 50px #CC095D, 0 0 60px #CC095D, 0 0 70px #CC095D;
+  }
+  
+  to {
+    text-shadow: 0 0 20px #fff, 0 0 30px #FD0363, 0 0 40px #FD0363, 0 0 50px #FD0363, 0 0 60px #FD0363, 0 0 70px #FD0363, 0 0 80px #FD0363;
+  }
+} */
+
 #home {
   background: url(https://i.postimg.cc/HsWrwPb8/shapelined-JBKdviwe-XI-unsplash.jpg);
   background-size: cover;
@@ -69,9 +90,9 @@ export default {
   margin-top: 18vh;
   position: absolute;
   height: 250px;
-  width: 580px;
+  width: 800px;
   top: 60px;
-  left: calc(50% - 300px);
+  left: calc(50% - 360px);
   display: flex;
 }
 
@@ -108,9 +129,13 @@ export default {
 
 .card {
   display: flex;
-  height: 280px;
-  width: 200px;
-  background-color: #cccccc;
+  height: 320px;
+  width: 250px;
+
+  background: #0A2344; 
+  background: -webkit-linear-gradient(to left, #fffcdc, #0A2344);  
+  background: linear-gradient(to left, #fffcdc, #0A2344); 
+
   border-radius: 1rem;
   border: #b8b8b8 0.2rem solid;
   transition: all 0.4s ease-in;
@@ -118,9 +143,6 @@ export default {
   position: relative;
   left: 0px;
   opacity: 69%;
-}
-.title{
-  text-align: center
 }
 
 .card:not(:first-child) {
@@ -131,8 +153,12 @@ export default {
   transform: translateY(-20px);
   transition: 0.4s ease-out;
   border: #FD0363 0.2em solid;
- border-radius: 2.5rem 0 2.5rem 0;
- opacity: 90%;
+  border-radius: 2.5rem 0 2.5rem 0;
+  opacity: 90%;
+  background: #ADA996;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  transform: scale(1.1)
 }
 
 .card:hover~.card {
