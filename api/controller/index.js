@@ -11,6 +11,7 @@ router.get('/', (req, res)=>{
     res.status(200).sendFile(path.join(__dirname, '../view/index.html'));
 })
 
+
 // =========USER's Router========
 // Register user
 router.post('/register', parser.json(), (req, res)=> {
@@ -37,6 +38,7 @@ router.put('/user/:id',parser.json(), (req, res)=>{
 router.delete('/user/:id', (req, res)=>{
     user.deleteUser(req, res);
 });
+
 
 // =====Products======
 // Create a new product
