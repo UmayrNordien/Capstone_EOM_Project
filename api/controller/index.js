@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const router = express.Router();
 const { User, Product, Order } = require('../model');
 const user = new User();
+const product = new Product();
 const order = new Order();
 // const cart = new Cart();
 
@@ -44,29 +45,29 @@ router.delete('/user/:id', (req, res)=>{
 // =====Products======
 // View all products
 router.get('/products', (req, res)=> {
-    Product.fetchProducts(req, res);
+    product.fetchProducts(req, res);
 });
 // View a single product
 router.get('/product/:id', 
 (req, res)=> {
-    Product.fetchProduct(req, res);
+    product.fetchProduct(req, res);
 });
 // Update a product
 router.put('/product/:id', 
 bodyParser.json(),
 (req, res)=> {
-    Product.updateProduct(req, res);
+    product.updateProduct(req, res);
 });
 // Create a new product
 router.post('/product', 
 bodyParser.json(), 
 (req, res)=> {
-    Product.addProduct(req, res);
+    product.addProduct(req, res);
 });
 // Delete a product
 router.delete('/product/:id', 
 (req, res)=> {
-    Product.deleteProduct(req, res);
+    product.deleteProduct(req, res);
 });
 
 
