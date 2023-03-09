@@ -9,9 +9,9 @@ class User {
         const {email, userPass} = req.body;
         const querySt = 
         `
-        SELECT firstName, lastName, gender, email, userPass, userRole, userProfile, joinDate
+        SELECT firstName, lastName, gender, emailADD, userPass, userRole, userProfile, joinDate
         FROM Users
-        WHERE email = '${email}';
+        WHERE emailDD = '${email}';
         `;
         db.query(querySt, async (err, data)=>{
             if(err) throw err;
@@ -52,7 +52,7 @@ class User {
     fetchUsers(req, res) {
         const querySt = 
         `
-        SELECT firstName, lastName, gender, email, userPass, userRole, userProfile, joinDate
+        SELECT firstName, lastName, gender, emailADD, userPass, userRole, userProfile, joinDate
         FROM Users
         `;
         
@@ -65,7 +65,7 @@ class User {
     fetchUser(req, res) {
         const querySt = 
         `
-        SELECT firstName, lastName, gender, email, userPass, userRole, userProfile, joinDate
+        SELECT firstName, lastName, gender, emailADD, userPass, userRole, userProfile, joinDate
         FROM Users
         WHERE userID = ?;
         `;
