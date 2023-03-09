@@ -4,12 +4,14 @@ const {hash, compare, hashSync } = require('bcrypt');
 
 const { createToken } = require('../middleware/AuthenticateUser');
 
+
+//============= Users =============//
 class User {
     login(req, res) {
         const {email, userPass} = req.body;
         const querySt = 
         `
-        SELECT firstName, lastName, gender, emailADD, userPass, userRole, userProfile, joinDate
+        SELECT firstName, lastName, gender, cellphoneNumber, emailADD, userPass, userRole, userProfile, joinDate
         FROM Users
         WHERE emailDD = '${email}';
         `;
@@ -52,7 +54,7 @@ class User {
     fetchUsers(req, res) {
         const querySt = 
         `
-        SELECT firstName, lastName, gender, emailADD, userPass, userRole, userProfile, joinDate
+        SELECT firstName, lastName, gender, cellphoneNumber, emailADD, userPass, userRole, userProfile, joinDate
         FROM Users
         `;
         
@@ -65,7 +67,7 @@ class User {
     fetchUser(req, res) {
         const querySt = 
         `
-        SELECT firstName, lastName, gender, emailADD, userPass, userRole, userProfile, joinDate
+        SELECT firstName, lastName, gender, cellphoneNumber, emailADD, userPass, userRole, userProfile, joinDate
         FROM Users
         WHERE userID = ?;
         `;
@@ -139,9 +141,11 @@ class User {
     }
 }
 
+
+//============= Products =============//
 class Product {
     fetchProducts(req, res) {
-        const querySt = `SELECT id, name, author, description, date_created, imgURL, price, quantity,
+        const querySt = `SELECT id, name, author, description, date_created, imgURL, price, quantity
         FROM Products;`;
         db.query(querySt, (err, results)=> {
             if(err) throw err;
@@ -149,7 +153,7 @@ class Product {
         });
     }
     fetchProduct(req, res) {
-        const querySt = `SELECT id, name, author, description, date_created, imgURL, price, quantity,
+        const querySt = `SELECT id, name, author, description, date_created, imgURL, price, quantity
         FROM Products
         WHERE id = ?;`;
         db.query(strQry, [req.params.id], (err, results)=> {
@@ -206,7 +210,156 @@ class Product {
     }
 }
 
+
+//============= Orders =============//
+class Order {
+    fetchOrders(req, res) {
+        const querySt = `SELECT id, userID, productID, quantity, orderDate, totalPrice
+        FROM Orders;`;
+        db.query(querySt, (err, results)=> {
+            if(err) throw err;
+            res.status(200).json({results: results})
+        });
+    }
+    fetchOrder(req, res) {
+        const querySt = `SELECT id, userID, productID, quantity, orderDate, totalPrice
+        FROM Orders
+        WHERE id = ?;`;
+        db.query(strQry, [req.params.id], (err, results)=> {
+            if(err) throw err;
+            res.status(200).json({results: results})
+        });
+
+    }
+    addOrder(req, res) {
+        const strQry = 
+        `
+        INSERT INTO Orders
+        SET ?;
+        `;
+        db.query(strQry,[req.body],
+            (err)=> {
+                if(err){
+                    res.status(400).json({err: "Unable to create new order."});
+                }else {
+                    res.status(200).json({msg: "Successfully created new order."});
+                }
+            }
+        );    
+
+    }
+    updateOrder(req, res) {
+        const querySt = 
+        `
+        UPDATE Orders
+        SET ?
+        WHERE id = ?
+        `;
+        db.query(querySt,[req.body, req.params.id],
+            (err)=> {
+                if(err){
+                    res.status(400).json({err: "Could not update order."});
+                }else {
+                    res.status(200).json({msg: "Order successfully updated"});
+                }
+            }
+        );    
+
+    }
+    deleteOrder(req, res) {
+        const querySt = 
+        `
+        DELETE FROM Orders
+        WHERE id = ?;
+        `;
+        db.query(querySt,[req.params.id], (err)=> {
+            if(err) res.status(400).json({err: "Unable to find order."});
+            res.status(200).json({msg: "Successfully deleted order."});
+        })
+    }
+}
+
+
+//============= Cart =============//
+// class Cart {
+//     // Fetch all carts
+//     static fetchCart(req, res) {
+//       const query = 'SELECT * FROM Cart';
+//       db.query(query, (err, results) => {
+//         if (err) {
+//           console.error(err);
+//           return res.status(500).json({ message: 'Server error' });
+//         }
+//         res.status(200).json({ results });
+//       });
+//     }
+  
+//     // Fetch a single cart by id
+//     static fetchCart(req, res) {
+//       const { id } = req.params;
+//       const query = 'SELECT * FROM Cart WHERE cartID = ?';
+//       db.query(query, [id], (err, results) => {
+//         if (err) {
+//           console.error(err);
+//           return res.status(500).json({ message: 'Server error' });
+//         }
+//         if (!results.length) {
+//           return res.status(404).json({ message: 'Cart not found' });
+//         }
+//         res.status(200).json({ result: results[0] });
+//       });
+//     }
+  
+//     // Add a new cart
+//     static addCart(req, res) {
+//       const { userID, productID, quantity } = req.body;
+//       const query = 'INSERT INTO Cart (userID, productID, quantity) VALUES (?, ?, ?)';
+//       db.query(query, [userID, productID, quantity], (err, results) => {
+//         if (err) {
+//           console.error(err);
+//           return res.status(500).json({ message: 'Server error' });
+//         }
+//         res.status(201).json({ message: 'Cart created successfully', cartID: results.insertId });
+//       });
+//     }
+  
+//     // Update a cart by id
+//     static updateCart(req, res) {
+//       const { id } = req.params;
+//       const { userID, productID, quantity } = req.body;
+//       const query = 'UPDATE Cart SET userID = ?, productID = ?, quantity = ? WHERE cartID = ?';
+//       db.query(query, [userID, productID, quantity, id], (err, results) => {
+//         if (err) {
+//           console.error(err);
+//           return res.status(500).json({ message: 'Server error' });
+//         }
+//         if (!results.affectedRows) {
+//           return res.status(404).json({ message: 'Cart not found' });
+//         }
+//         res.status(200).json({ message: 'Cart updated successfully' });
+//       });
+//     }
+  
+//     // Delete a cart by id
+//     static deleteCart(req, res) {
+//       const { id } = req.params;
+//       const query = 'DELETE FROM Cart WHERE cartID = ?';
+//       db.query(query, [id], (err, results) => {
+//         if (err) {
+//           console.error(err);
+//           return res.status(500).json({ message: 'Server error' });
+//         }
+//         if (!results.affectedRows) {
+//           return res.status(404).json({ message: 'Cart not found' });
+//         }
+//         res.status(200).json({ message: 'Cart deleted successfully' });
+//       });
+//     }
+// }
+
 module.exports = {
     User, 
-    Product
+    Product,
+    Order,
+    // Cart
 }
