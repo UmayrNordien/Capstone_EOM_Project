@@ -1,5 +1,5 @@
 <template>
-    <div class="bg">
+    <div id="home">
         <div class="container">
   <input id="register_toggle" type="checkbox">
   <div class="slider">
@@ -53,10 +53,14 @@ export default {
 </script>
 
 <style scoped>
-.bg{
-    background-image: url(https://i.postimg.cc/gjDFVfBS/Untitled.jpg);
-    background-size: cover;
-  background-position: center;
+
+
+#home {
+  /* background: url(https://i.postimg.cc/HsWrwPb8/shapelined-JBKdviwe-XI-unsplash.jpg); */
+  background: url(https://i.postimg.cc/mDzBXx2z/World-Book-Day-2000-x-2000-px-6.jpg) fixed;
+  background-size: contain;
+  background-repeat: repeat-y;
+  width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -66,8 +70,9 @@ export default {
 }
 
 .container {
-  margin-bottom: 20px;
-  width: 300px;
+  margin-top: 2vh;
+  width: 600px;
+  margin:25px;
   position: relative;
   border-radius: 1rem;
   overflow: hidden;

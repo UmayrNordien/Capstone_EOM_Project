@@ -17,7 +17,7 @@ export default {
 
 <style scoped>
 .bg{
-  background-image: url(https://i.postimg.cc/T19jT9p5/Untitled-3.jpg);
+  /* background-image: url(https://i.postimg.cc/T19jT9p5/Untitled-3.jpg); */
   background-size: cover;
   background-position: center;
   height: 100vh;
