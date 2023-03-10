@@ -91,7 +91,6 @@ export default {
   transform: scale(1.1)
 }
 
-
 .container .slider {
   width: 200%;
   position: relative;
@@ -183,6 +182,9 @@ form button:active {
 
 .container:hover .login {
   color: #FD0363;
+}
+.container:hover form .form_control .label{
+  color:#000000
 }
 
 .bottom_text {

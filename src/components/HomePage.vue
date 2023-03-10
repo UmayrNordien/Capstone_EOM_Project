@@ -57,6 +57,7 @@ export default {
   background: url(https://i.postimg.cc/HsWrwPb8/shapelined-JBKdviwe-XI-unsplash.jpg);
   background-size: cover;
   background-position: center;
+  width:50%;
   height: 100vh;
   display: flex;
   justify-content: center;
