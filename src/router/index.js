@@ -30,7 +30,14 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('../views/LoginView.vue')
+    component: () => import('../views/LoginView.vue'),
+    // beforeEnter: (to, from, next) => {
+    //   if (!store.state.user) {
+    //     next({ name: 'login' });
+    //   } else {
+    //     next();
+    //   }
+    // }
   },
   {
     path: '/register',

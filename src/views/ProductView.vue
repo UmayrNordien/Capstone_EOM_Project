@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="product">
         <a class="book-container" href="https://theoutstanding.dev/" target="_blank" rel="noreferrer noopener">
             <div class="book">
                 <img alt="The Outstanding Developer by Sebastien Castiel" src="https://i.postimg.cc/Vkd22MxL/1303.jpg" />
@@ -20,12 +20,25 @@ export default {
 </script>
 
 <style scoped>
-    div {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
+#product {
+  background: url(https://i.postimg.cc/6q5hXj2z/World-Book-Day-2000-x-2000-px-4.jpg) fixed;
+  background-size: contain;
+  background-repeat: repeat-y;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  /* center horizontally */
+  align-items: center;
+  /* center vertically */
+}
+
+div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
 .book-container {
     display: flex;
     align-items: center;

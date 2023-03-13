@@ -47,27 +47,14 @@
 </template>
 
 <script>
-export default {
-
+export default{
+  
 }
-let screenWidth = window.innerWidth; // get initial screen width
-let bgSize = 100; // set initial background size
-const decreaseAmount = 49; // set amount by which screen width must decrease to trigger size increase
-
-window.addEventListener('resize', () => { // listen for screen size changes
-  const newScreenWidth = window.innerWidth; // get new screen width
-  if (newScreenWidth < screenWidth && screenWidth - newScreenWidth >= decreaseAmount) { // check if screen width decreased by at least 49px
-    bgSize += 1; // increase background size by 1%
-    document.body.style.backgroundSize = `${bgSize}%`; // update background size
-    screenWidth = newScreenWidth; // update screen width
-  }
-});
-
 </script>
 
 <style scoped>
 #home {
-  background: url(https://i.postimg.cc/h46N42qK/World-Book-Day-2000-x-2000-px-1.jpg) fixed;
+  background: url(https://i.postimg.cc/6q5hXj2z/World-Book-Day-2000-x-2000-px-4.jpg) fixed;
   background-size: contain;
   background-repeat:repeat-y;
   width: 100%;
@@ -124,10 +111,8 @@ window.addEventListener('resize', () => { // listen for screen size changes
   display: flex;
   height: 320px;
   width: 250px;
-
-  background: #0A2344; 
-  background: -webkit-linear-gradient(to left, #fffcdc, #0A2344);  
-  background: linear-gradient(to left, #fffcdc, #0A2344); 
+  background: -webkit-linear-gradient(to left, #fffcdc, #212121);  
+  background: linear-gradient(to left, #fffcdc, #212121); 
 
   border-radius: 1rem;
   border: #b8b8b8 0.2rem solid;
@@ -147,10 +132,8 @@ window.addEventListener('resize', () => { // listen for screen size changes
   transition: 0.4s ease-out;
   border: #FD0363 0.2em solid;
   border-radius: 2.5rem 0 2.5rem 0;
-  opacity: 90%;
-  background: #ADA996;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  opacity: 100%;
+  background: #212121;
   transform: scale(1.1)
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="draggable">
+  <div>
     <nav class="menu">
       <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open">
       <label class="menu-open-button" for="menu-open">
@@ -11,8 +11,8 @@
       <a class="menu-item blue"><router-link to="/"><i class="bi bi-house"></i></router-link></a>
       <a class="menu-item green"><router-link to="/about"><i class="bi bi-file-earmark-person"></i></router-link></a>
       <a class="menu-item red"><router-link to="/login"><i class="bi bi-fingerprint"></i></router-link></a>
-      <a class="menu-item purple"><router-link to="/contact"><i class="bi bi-phone"></i></router-link></a>
-      <a class="menu-item orange"><router-link to="/register"><i class="bi bi-pen"></i></router-link></a>
+      <a class="menu-item purple"><router-link to="/register"><i class="bi bi-pen"></i></router-link></a>
+      <a class="menu-item orange"><router-link to="/contact"><i class="bi bi-phone"></i></router-link></a>
       <a class="menu-item lightblue"><router-link to="/products"><i class="bi bi-bag"></i></router-link></a>
     </nav>
   </div>
@@ -20,64 +20,11 @@
 
 <script>
 export default {
-  mounted() {
-    const navbar = this.$el.querySelector('.draggable');
-    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-
-    navbar.onmousedown = dragMouseDown;
-
-    function dragMouseDown(e) {
-      e = e || window.event;
-      e.preventDefault();
-      // get the mouse cursor position at startup:
-      pos3 = e.clientX;
-      pos4 = e.clientY;
-      document.onmouseup = closeDragElement;
-      // call a function whenever the cursor moves:
-      document.onmousemove = elementDrag;
-      navbar.classList.add('active');
-    }
-
-    function elementDrag(e) {
-      e = e || window.event;
-      e.preventDefault();
-      // calculate the new cursor position:
-      pos1 = pos3 - e.clientX;
-      pos2 = pos4 - e.clientY;
-      pos3 = e.clientX;
-      pos4 = e.clientY;
-      // set the element's new position:
-      navbar.style.top = (navbar.offsetTop - pos2) + "px";
-      navbar.style.left = (navbar.offsetLeft - pos1) + "px";
-    }
-
-    function closeDragElement() {
-      // stop moving when mouse button is released:
-      document.onmouseup = null;
-      document.onmousemove = null;
-      navbar.classList.remove('active');
-    }
-  }
+  
 }
 </script>
 
 <style scoped>
-.draggable {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.draggable.active {
-  cursor: grabbing;
-  cursor: -webkit-grabbing;
-  z-index: 2;
-}
 
 .menu-item,
 .menu-open-button {
@@ -85,7 +32,6 @@ export default {
   border-radius: 100%;
   width: 80px;
   height: 80px;
-  margin-left: 645px;
   color: #FFFFFF;
   text-align: center;
   line-height: 80px;
@@ -96,8 +42,8 @@ export default {
   transition: transform ease-out 200ms;
   /* Align bottom left */
   position: fixed;
-  bottom: 150px;
-  left: 150px;
+  bottom: 120px;
+  left: 120px;
 }
 
 .menu-open {

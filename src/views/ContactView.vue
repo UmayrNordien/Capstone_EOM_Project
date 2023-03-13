@@ -1,6 +1,5 @@
 <template>
-    <div class="bg">
-        <h1>Contact</h1>
+    <div id="contact">
         <NavBar></NavBar>
     </div>
 </template>
@@ -16,10 +15,11 @@ export default {
 </script>
 
 <style scoped>
-.bg{
-  /* background-image: url(https://i.postimg.cc/Kcw3gCyc/Untitled-4.jpg.jpg); */
-  background-size: cover;
-  background-position: center;
+#contact {
+  background: url(https://i.postimg.cc/6q5hXj2z/World-Book-Day-2000-x-2000-px-4.jpg) fixed;
+  background-size: contain;
+  background-repeat: repeat-y;
+  width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
