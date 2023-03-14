@@ -70,9 +70,9 @@ export default{
   margin-top: 18vh;
   position: absolute;
   height: 250px;
-  width: 800px;
+  width: 900px;
   top: 60px;
-  left: calc(50% - 360px);
+  left: calc(50% - 425px);
   display: flex;
 }
 
@@ -89,7 +89,7 @@ export default{
   .container {
     height: 150px;
     width: 300px;
-    top: 100px;
+    top: -45px;
     left: calc(50% - 150px);
   }
 }

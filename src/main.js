@@ -9,7 +9,4 @@ import 'bootstrap'
 import '../src/assets/css/styles.css'
 import 'axios'
 
-
-
-
 createApp(App).use(store).use(router).mount('#app')

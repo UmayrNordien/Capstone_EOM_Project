@@ -49,7 +49,7 @@
 			</div>
 
 	<div class="container">
-      <div class="row">
+      <div class="row" v-if="!isLoading && products">
         <div v-for="product in products" :key="product.name" class="col-lg-4 col-md-6 mb-4">
           <div class="card h-100">
             <img class="card-img-top" image-fluid :src="product.image" :alt="product.name" style="width: 400px; height: 300px;">
@@ -66,91 +66,50 @@
       </div>
     </div>
     <NavBar></NavBar>
+    <SpinnerC v-if="isLoading" />
   </div>
 
 </template>
   
 <script>
-import NavBar from '../components/NavBar.vue';
+import NavBar from '@/components/NavBar.vue';
+import axios from 'axios';
+import SpinnerC from '../components/ProductSpinner.vue';
 
 export default {
-  components: {
-    NavBar
-  },
   data() {
     return {
-      products: [
-        {
-          name: "Product 1",
-          price: 199.99,
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          image: "https://i.postimg.cc/P5fT0Gk4/01-paperback-book-cover-mockup-standing-removebg-preview.png"
-        },
-        {
-          name: "Product 2",
-          price: 240.99,
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          image: "https://i.postimg.cc/P5fT0Gk4/01-paperback-book-cover-mockup-standing-removebg-preview.png"
-        },
-        {
-          name: "Product 3",
-          price: 290.99,
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          image: "https://i.postimg.cc/P5fT0Gk4/01-paperback-book-cover-mockup-standing-removebg-preview.png"
-        },
-        {
-          name: "Product 4",
-          price: 199.99,
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          image: "https://i.postimg.cc/P5fT0Gk4/01-paperback-book-cover-mockup-standing-removebg-preview.png"
-        },
-        {
-          name: "Product 5",
-          price: 240.99,
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          image: "https://i.postimg.cc/P5fT0Gk4/01-paperback-book-cover-mockup-standing-removebg-preview.png"
-        },
-        {
-          name: "Product 6",
-          price: 210.99,
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          image: "https://i.postimg.cc/P5fT0Gk4/01-paperback-book-cover-mockup-standing-removebg-preview.png"
-        },
-        {
-          name: "Product 7",
-          price: 69.69,
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          image: "https://i.postimg.cc/P5fT0Gk4/01-paperback-book-cover-mockup-standing-removebg-preview.png"
-        },
-        {
-          name: "Product 8",
-          price: 290.99,
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          image: "https://i.postimg.cc/P5fT0Gk4/01-paperback-book-cover-mockup-standing-removebg-preview.png"
-        },
-        {
-          name: "Product 9",
-          price: 420.99,
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          image: "https://i.postimg.cc/P5fT0Gk4/01-paperback-book-cover-mockup-standing-removebg-preview.png"
-        },
-        {
-          name: "Product 10",
-          price: 140.99,
-          description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          image: "https://i.postimg.cc/P5fT0Gk4/01-paperback-book-cover-mockup-standing-removebg-preview.png"
-        }
-      ]
-    }
+      products: [],
+      isLoading: true,
+      sortDir: 'asc'
+    };
+  },
+  methods: {
+    async getProducts() {
+      let res = await axios.get('https://capstone-ecommerce.onrender.com/products');
+      let { results } = await res.data;
+      this.products = results;
+    },
+  },
+  created() {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 5000);
+  },
+  mounted() {
+    this.getProducts();
+  },
+  components: {
+    SpinnerC,
+    NavBar
   }
-}
+};
 </script>
 
-  
+
 <style scoped>
 #products {
-  /* background: url(https://i.postimg.cc/6q5hXj2z/World-Book-Day-2000-x-2000-px-4.jpg) fixed; */
-  background: url(https://i.postimg.cc/kGQPpCX7/brett-jordan-Cs-ZQ50x-O35-I-unsplash.jpg);
+  background: url(https://i.postimg.cc/kGQPpCX7/brett-jordan-Cs-ZQ50x-O35-I-unsplash.jpg) fixed;
   background-size: cover;
   background-position: center;
   width: 100%;
