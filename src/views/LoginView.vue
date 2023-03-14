@@ -6,8 +6,8 @@
   <form class="form">
     <span class="title">Login</span>
     <div class="form_control">
-  <input required="" v-model="emailAdd" class="input" type="text">
-  <label class="label">Username</label>
+  <input required="" v-model="emailAdd" class="input" type="email">
+  <label class="label">Email</label>
 </div>
 
     <div class="form_control">
