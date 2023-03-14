@@ -156,7 +156,7 @@ class Product {
         const querySt = `SELECT id, name, author, description, date_created, imgURL, price, quantity
         FROM Products
         WHERE id = ?;`;
-        db.query(strQry, [req.params.id], (err, results)=> {
+        db.query(querySt, [req.params.id], (err, results)=> {
             if(err) throw err;
             res.status(200).json({results: results})
         });
