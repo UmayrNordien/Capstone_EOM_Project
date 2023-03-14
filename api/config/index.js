@@ -4,10 +4,10 @@ const { createPool } = require('mysql');
 //https://stackoverflow.com/questions/35553432/error-handshake-inactivity-timeout-in-node-js-mysql-module
 let connection = createPool({
     
-    connectionLimit : 1000,
-    connectTimeout  : 60 * 60 * 1000,
-    acquireTimeout  : 60 * 60 * 1000,
-    timeout         : 60 * 60 * 1000,
+    connectionLimit : 10000,
+    connectTimeout  : 60 * 60 * 10000,
+    acquireTimeout  : 60 * 60 * 10000,
+    timeout         : 60 * 60 * 10000,
 
     host: process.env.HOST,
     user: process.env.USER,

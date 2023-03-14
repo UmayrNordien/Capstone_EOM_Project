@@ -6,7 +6,6 @@ const { User, Product, Order } = require('../model');
 const user = new User();
 const product = new Product();
 const order = new Order();
-// const cart = new Cart();
 
 
 router.get('/', (req, res)=>{
@@ -98,78 +97,5 @@ router.delete('/order/:id',
 (req, res)=> {
     order.deleteOrder(req, res);
 });
-
-
-// =====Cart======
-// Create a new cart item
-// router.post('/cart', (req, res) => {
-//     const { userID, productID, quantity } = req.body;
-//     const query = 'INSERT INTO Cart (userID, productID, quantity) VALUES (?, ?, ?)';
-//     mysqlConnection.query(query, [userID, productID, quantity], (err, rows) => {
-//       if (err) {
-//         res.status(500).json({ error: err.message });
-//       } else {
-//         res.status(201).json({ message: 'Cart item created successfully.' });
-//       }
-//     });
-//   });
-  
-//   // Get all cart items
-//   router.get('/cart', (req, res) => {
-//     const query = 'SELECT * FROM Cart';
-//     mysqlConnection.query(query, (err, rows) => {
-//       if (err) {
-//         res.status(500).json({ error: err.message });
-//       } else {
-//         res.status(200).json(rows);
-//       }
-//     });
-//   });
-  
-//   // Get a single cart item by ID
-//   router.get('/cart/:cartID', (req, res) => {
-//     const { cartID } = req.params;
-//     const query = 'SELECT * FROM Cart WHERE cartID = ?';
-//     mysqlConnection.query(query, [cartID], (err, rows) => {
-//       if (err) {
-//         res.status(500).json({ error: err.message });
-//       } else if (rows.length === 0) {
-//         res.status(404).json({ message: 'Cart item not found.' });
-//       } else {
-//         res.status(200).json(rows[0]);
-//       }
-//     });
-//   });
-  
-//   // Update a cart item by ID
-//   router.put('/cart/:cartID', (req, res) => {
-//     const { cartID } = req.params;
-//     const { userID, productID, quantity } = req.body;
-//     const query = 'UPDATE Cart SET userID = ?, productID = ?, quantity = ? WHERE cartID = ?';
-//     mysqlConnection.query(query, [userID, productID, quantity, cartID], (err, rows) => {
-//       if (err) {
-//         res.status(500).json({ error: err.message });
-//       } else if (rows.affectedRows === 0) {
-//         res.status(404).json({ message: 'Cart item not found.' });
-//       } else {
-//         res.status(200).json({ message: 'Cart item updated successfully.' });
-//       }
-//     });
-//   });
-  
-//   // Delete a cart item by ID
-//   router.delete('/cart/:cartID', (req, res) => {
-//     const { cartID } = req.params;
-//     const query = 'DELETE FROM Cart WHERE cartID = ?';
-//     mysqlConnection.query(query, [cartID], (err, rows) => {
-//       if (err) {
-//         res.status(500).json({ error: err.message });
-//       } else if (rows.affectedRows === 0) {
-//         res.status(404).json({ message: 'Cart item not found.' });
-//       } else {
-//         res.status(200).json({ message: 'Cart item deleted successfully.' });
-//       }
-//     });
-//   });
 
 module.exports = router;
