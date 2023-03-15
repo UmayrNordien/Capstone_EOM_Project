@@ -47,8 +47,8 @@
               </div>
             </div>
           </div>
-          <button class="register">Register</button>
-          <span class="bottom_text">Already have an account? <router-link to="/login"><label class="switch" for="login_toggle"> Login</label></router-link></span>
+          <button class="register" @click.prevent="registerUser">Register</button>
+          <span class="bottom_text">Already have an account? <router-link to="/"><label class="switch" for="login_toggle"> Login</label></router-link></span>
         </form>
       </div>
     </div>
@@ -282,4 +282,3 @@
     }
   }
   </style>
-  

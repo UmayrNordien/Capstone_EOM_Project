@@ -17,25 +17,6 @@
     <button class="login" @click="login">Login</button>
 
     <span class="bottom_text">Don't have an account? <router-link to="/register"><label class="switch" for="login_toggle">Register</label></router-link></span>
-  <!-- <span class="bottom_text">Don't have an account? <label class="switch" for="register_toggle">Register</label></span> -->
-  <!-- </form>
-  <form class="form">
-    <span class="title">Sign Up</span>
-    <div class="form_control">
-      <input required="" class="input" type="text">
-      <label class="label">Email</label>
-    </div>
-    <div class="form_control">
-      <input required="" class="input" type="email">
-      <label class="label">Email</label>
-    </div>
-    <div class="form_control">
-      <input required="" class="input" type="password">
-      <label class="label">Password</label>
-    </div>
-    <button>Sign Up</button>
-
-    <span class="bottom_text">Already have an account? <label class="swtich" for="register_toggle">Sign In</label> </span> -->
   </form>
   </div>
 </div>
@@ -61,7 +42,7 @@ export default {
 methods: {
   login() {
     axios
-      .post('https://capstone-ecommerce.onrender.com/', {
+      .post('https://capstone-ecommerce.onrender.com/users', {
         email: this.emailAdd,
         userPass: this.userPass
       })

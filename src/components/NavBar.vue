@@ -8,10 +8,10 @@
         <span class="lines line-3"></span>
       </label>
 
-      <a class="menu-item blue"><router-link to="/"><i class="bi bi-house"></i></router-link></a>
+      <a class="menu-item blue"><router-link to="/home"><i class="bi bi-house"></i></router-link></a>
       <a class="menu-item green"><router-link to="/about"><i class="bi bi-file-earmark-person"></i></router-link></a>
-      <a class="menu-item red"><router-link to="/login"><i class="bi bi-fingerprint"></i></router-link></a>
-      <a class="menu-item purple"><router-link to="/register"><i class="bi bi-pen"></i></router-link></a>
+      <a class="menu-item red"><router-link to="/"><i class="bi bi-fingerprint"></i></router-link></a>
+      <a class="menu-item purple"><router-link to="/userprofile"><i class="bi bi-person-circle"></i></router-link></a>
       <a class="menu-item orange"><router-link to="/contact"><i class="bi bi-phone"></i></router-link></a>
       <a class="menu-item lightblue"><router-link to="/products"><i class="bi bi-bag"></i></router-link></a>
     </nav>

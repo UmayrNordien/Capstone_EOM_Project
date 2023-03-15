@@ -4,6 +4,18 @@ import HomeView from '../views/HomeView.vue'
 const routes = [
   {
     path: '/',
+    name: 'login',
+    component: () => import('../views/LoginView.vue'),
+    // beforeEnter: (to, from, next) => {
+    //   if (!store.state.user) {
+    //     next({ name: 'login' });
+    //   } else {
+    //     next();
+    //   }
+    // }
+  },
+  {
+    path: '/home',
     name: 'home',
     component: HomeView
   },
@@ -28,21 +40,19 @@ const routes = [
     component: () => import('../views/ProductView.vue')
   },
   {
-    path: '/login',
-    name: 'login',
-    component: () => import('../views/LoginView.vue'),
-    // beforeEnter: (to, from, next) => {
-    //   if (!store.state.user) {
-    //     next({ name: 'login' });
-    //   } else {
-    //     next();
-    //   }
-    // }
-  },
-  {
     path: '/register',
     name: 'register',
     component: () => import('../views/RegisterView.vue')
+  },
+  {
+    path: '/userprofile',
+    name: 'userprofile',
+    component: () => import('../views/UserProfile.vue')
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: () => import('../views/AdminView.vue')
   }
 ]
 
