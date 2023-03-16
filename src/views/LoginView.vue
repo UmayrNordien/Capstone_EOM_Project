@@ -41,6 +41,7 @@ export default {
 
 methods: {
   login() {
+    console.log('Submitting login credentials...');
     axios
       .post('https://capstone-ecommerce.onrender.com/users', {
         email: this.emailAdd,

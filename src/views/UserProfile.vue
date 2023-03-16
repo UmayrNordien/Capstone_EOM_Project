@@ -33,7 +33,7 @@ export default {
 
 <style scoped>
 #profile {
-/* background: url(https://i.postimg.cc/6q5hXj2z/World-Book-Day-2000-x-2000-px-4.jpg) fixed; */
+  background: url(https://i.postimg.cc/6q5hXj2z/World-Book-Day-2000-x-2000-px-4.jpg) fixed;
   background-size: contain;
   background-repeat: repeat-y;
   width: 100%;
@@ -64,8 +64,8 @@ export default {
   height: auto;
   border-radius: 50%;
   margin-bottom: 10px;
-  border: 0.5rem solid #CC095D;
-  border-color: linear-gradient(90deg, #FD0363 0%,#CC095D 16.6%, #9C1057 32.2%, #6B1650 49.8%, #3B1D4A 66.4%, #0A2344 100%) !important;
+  background: 0.5rem solid #CC095D;
+  background: linear-gradient(90deg, #FD0363 0%,#CC095D 16.6%, #9C1057 32.2%, #6B1650 49.8%, #3B1D4A 66.4%, #0A2344 100%) !important;
 }
 
 .card h2 {

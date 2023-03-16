@@ -1,6 +1,6 @@
 <template>
     <div id="product">
-        <a class="book-container" href="https://theoutstanding.dev/" target="_blank" rel="noreferrer noopener">
+        <a class="book-container" href="" target="_blank" rel="noreferrer noopener">
             <div class="book">
                 <img alt="The Outstanding Developer by Sebastien Castiel" src="https://i.postimg.cc/Vkd22MxL/1303.jpg" />
             </div>
@@ -11,13 +11,25 @@
 
 <script>
 import NavBar from '@/components/NavBar.vue';
-
-
-
-export default {
-    components: { NavBar }
+// import { useStore } from 'vuex';
+// import {computed} from '@vue/runtime-core';
+export default{
+    // setup(){
+    //     const store = useStore();
+    //     const user = computed(() => store.state.user);
+    //     store.dispatch('fetchProductById');
+    //     const product = computed(() => store.state.product);
+    //     return{
+    //         user,
+    //         product,
+    //     }
+    // },
+    components: {
+        NavBar
+    }
 }
 </script>
+
 
 <style scoped>
 #product {
@@ -25,7 +37,7 @@ export default {
   background-size: contain;
   background-repeat: repeat-y;
   width: 100%;
-  height: 100vh;
+  height: 100vh !important;
   display: flex;
   justify-content: center;
   /* center horizontally */

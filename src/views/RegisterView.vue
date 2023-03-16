@@ -47,7 +47,7 @@
               </div>
             </div>
           </div>
-          <button class="register" @click.prevent="registerUser">Register</button>
+          <button type="submit" class="register" @click.prevent="registerUser">Register</button>
           <span class="bottom_text">Already have an account? <router-link to="/"><label class="switch" for="login_toggle"> Login</label></router-link></span>
         </form>
       </div>
@@ -56,42 +56,47 @@
   </div>
 </template>
   
-  <script>
-  import NavBar from '../components/NavBar.vue'
-  import { computed } from '@vue/runtime-core';
-  import { useStore } from 'vuex';
-  
-  export default {
-    components: {
-      NavBar,
-    },
-    setup() {
-    const payload = {
-      firstName: '',
-      lastName: '',
-      gender: '',
-      cellphoneNumber: '',
-      emailAdd: '',
-      userPass: '',
-      userProfile: '',
-      joinDate: ''
-    };
-    const store = useStore();
-    const signUp = () => {
-      store.dispatch("register", payload);
-      // Refresh
-      store.dispatch("fetchUsers");
-    }
-    const userMsg =
-      computed(() => store.state.message)
+<script>
+import NavBar from '../components/NavBar.vue'
+import axios from 'axios'
+
+export default {
+  components: {
+    NavBar
+  },
+  data() {
     return {
-      payload,
-      userMsg,
-      signUp
+      payload: {
+        firstName: '',
+        lastName: '',
+        gender: '',
+        cellphoneNumber: '',
+        emailAdd: '',
+        userPass: '',
+        userProfile: '',
+        joinDate: ''
+      }
+    }
+  },
+
+  methods: {
+    registerUser() {
+      console.log("Submitting registration form...");
+      axios
+        .post('https://capstone-ecommerce.onrender.com/users', this.payload)
+        .then(response => {
+          console.log(response.data);
+          // handle successful registration
+        })
+        .catch(error => {
+          console.log(error);
+          // handle registration error
+        })
     }
   }
 }
-  </script>
+</script>
+
   
   <style scoped>
   #register {

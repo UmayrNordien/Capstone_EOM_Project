@@ -4,46 +4,46 @@
 		<div class="slider">
 			<div class="slide-track">
 				<div class="slide">
-					<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png" height="100" width="250" alt="" />
+					<img src="" height="100" width="250" alt="" />
 				</div>
 				<div class="slide">
-					<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png" height="100" width="250" alt="" />
+					<img src="" height="100" width="250" alt="" />
 				</div>
 				<div class="slide">
-					<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png" height="100" width="250" alt="" />
+					<img src="" height="100" width="250" alt="" />
 				</div>
 				<div class="slide">
-					<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png" height="100" width="250" alt="" />
+					<img src="" height="100" width="250" alt="" />
 				</div>
 				<div class="slide">
-					<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png" height="100" width="250" alt="" />
+					<img src="" height="100" width="250" alt="" />
 				</div>
 				<div class="slide">
-					<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png" height="100" width="250" alt="" />
+					<img src="" height="100" width="250" alt="" />
 				</div>
 				<div class="slide">
-					<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png" height="100" width="250" alt="" />
+					<img src="" height="100" width="250" alt="" />
 				</div>
 				<div class="slide">
-					<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/1.png" height="100" width="250" alt="" />
+					<img src="" height="100" width="250" alt="" />
 				</div>
 				<div class="slide">
-					<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png" height="100" width="250" alt="" />
+					<img src="" height="100" width="250" alt="" />
 				</div>
 				<div class="slide">
-					<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png" height="100" width="250" alt="" />
+					<img src="" height="100" width="250" alt="" />
 				</div>
 				<div class="slide">
-					<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png" height="100" width="250" alt="" />
+					<img src="" height="100" width="250" alt="" />
 				</div>
 				<div class="slide">
-					<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png" height="100" width="250" alt="" />
+					<img src="" height="100" width="250" alt="" />
 				</div>
 				<div class="slide">
-					<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png" height="100" width="250" alt="" />
+					<img src="" height="100" width="250" alt="" />
 				</div>
 				<div class="slide">
-					<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png" height="100" width="250" alt="" />
+					<img src="" height="100" width="250" alt="" />
 				</div>
 		</div>
 			</div>
@@ -52,14 +52,15 @@
       <div class="row" v-if="!isLoading && products">
         <div v-for="product in products" :key="product.name" class="col-lg-4 col-md-6 mb-4">
           <div class="card h-100">
-            <img class="card-img-top" image-fluid :src="product.image" :alt="product.name" style="width: 400px; height: 300px;">
+            <img class="card-img-top mx-auto mt-5" :src="product.imgURL" :alt="product.name" style="width: 160px; height: 200px;">
             <div class="card-body">
               <h4 class="card-title">{{ product.name }}</h4>
+              <h6>[{{ product.category }}]</h6>
               <h5>R{{ product.price }}</h5>
               <p class="card-text">{{ product.description }}</p>
             </div>
             <div class="card-footer">
-              <a href="#" class="btn btn-outline-dark">View More</a>
+              <RouterLink to=/product><a href="#" class="btn btn-outline-light">View More</a></RouterLink>
             </div>
           </div>
         </div>
@@ -149,6 +150,20 @@ export default {
   width: 150%;
   height: 150%;
   object-fit: contain;
+  transform: scale(1.1)
+}
+.container img:hover {
+  width: 150%;
+  height: 150%;
+  object-fit: contain;
+  transform: scale(2.2);
+  transition: 2s;
+  margin: 0;
+  padding: 0;
+  transform: translateY(-20px);
+  transition: 0.4s ease-out;
+  border: #FD0363 0.2em solid;
+  border-radius: 2.5rem 0 2.5rem 0; /* how to make it so that the border wraps around the image with no space or the image having this border upon hover */
 }
 
 @keyframes scroll {
@@ -168,17 +183,30 @@ export default {
 }
 
 .card{
-  border-radius: 50px;
-  background: rgb(180, 180, 180);
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 50px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 26px -18px inset;
+  background: -webkit-linear-gradient(to left, #fffcdc, #212121);  
+  background: linear-gradient(to left, #8d8d8d, #212121); 
+
+  border-radius: 1rem;
+  border: #b8b8b8 0.2rem solid;
+  transition: all 0.4s ease-in;
+  box-shadow: 0.4rem 0.4rem 0.6rem #00000040;
+  position: relative;
+  color:#FFFFFF;
+}
+
+.card h6{
+  color: #FD0363;
+  font-weight: bold;
 }
 .card:hover{
- border: none;
- border-radius: 50px;
- background: #e0e0e0;
- box-shadow: 20px 20px 60px #bebebe,
-               -20px -20px 60px #ffffff;
- transform: translateY(-5px);
+  transform: translateY(-20px);
+  transition: 0.4s ease-out;
+  border: #FD0363 0.2em solid;
+  border-radius: 2.5rem 0 2.5rem 0;
+  opacity: 100%;
+  background: #212121;
+  transform: scale(1);
+  color: white;
 }
 
 .card-footer{
