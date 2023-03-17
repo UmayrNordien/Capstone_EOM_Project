@@ -22,7 +22,8 @@
               <th>Name</th>
               <th>Surname</th>
               <th>Phone No.</th>
-              <th>EmailAdd</th>
+              <th>Email</th>
+              <th>User Pass</th>
               <th></th>
             </tr>
           </thead>
@@ -34,6 +35,7 @@
               <td>{{ person.lastName }}</td>
               <td>{{ person.cellphoneNumber }}</td>
               <td>{{ person.emailAdd }}</td>
+              <td>{{ person.userPass }}</td>
               <td> 
                 <button><UpdateUser/></button>
               </td>
@@ -71,9 +73,9 @@
           <tbody >
             <tr v-for="product in products" :key="product">
               <td>{{ product.prodId }} </td>
-              <td><img :src="product.imgURL" alt="prod.img" style="max-height: 60px;"></td>
-              <td>{{ product.prodName }}</td>
-              <td>{{ product.prodDescription }}</td>
+              <td><img :src="product.imgURL" alt={{product.imgURL}} style="max-height: 60px;"></td>
+              <td>{{ product.name }}</td>
+              <td>{{ product.description }}</td>
               <td>{{ product.category }}</td>
               <td>R{{ product.price }}</td>
               <td> 
