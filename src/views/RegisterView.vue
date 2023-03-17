@@ -3,51 +3,51 @@
     <div class="container">
       <input id="login_toggle" type="checkbox">
       <div class="slider">
-        <form class="form" @submit.prevent="signUp">
+        <form class="form" @submit.prevent="register">
           <span class="title">Register</span>
           <div class="form-row w-100">
             <div class="form-col">
               <div class="form_control m-2">
-                <input required="" class="input" type="text" v-model="payload.firstName">
+                <input required class="input" type="text" v-model="firstName">
                 <label class="label">Name</label>
               </div>
               <div class="form_control m-2">
-                <input required="" class="input" type="text" v-model="payload.lastName">
+                <input required class="input" type="text" v-model="lastName">
                 <label class="label">Surname</label>
               </div>
               <div class="form_control m-2">
-                <input required="" class="input" type="text" v-model="payload.gender">
+                <input required class="input" type="text" v-model="gender">
                 <label class="label">Gender</label>
               </div>
               <div class="form_control m-2">
-                <input required="" class="input" type="number" v-model="payload.cellphoneNumber">
+                <input required class="input" type="number" v-model="cellphoneNumber">
                 <label class="label">Contact</label>
               </div>
             </div>
             <div class="form-col">
               <div class="form_control m-2">
-                <input required="" class="input" type="email" v-model="payload.emailAdd">
+                <input required class="input" type="email" v-model="emailAdd">
                 <label class="label">Email</label>
               </div>
               <div class="form_control m-2">
-                <input required="" class="input" type="text" v-model="payload.userPass">
+                <input required class="input" type="password" v-model="userPass">
                 <label class="label">Password</label>
               </div>
               <div class="form_control m-2">
-                <input required="" class="input" type="text" v-model="payload.userRole">
+                <input required class="input" type="text" v-model="userRole">
                 <label class="label">Role</label>
               </div>
               <div class="form_control m-2">
-                <input required="" class="input" type="url" v-model="payload.userProfile">
+                <input required class="input" type="text" v-model="userProfile">
                 <label class="label">Profile Image (URL)</label>
               </div>
               <div class="form_control m-2">
-                <input class="input" type="date" v-model="payload.joinDate">
+                <input class="input" type="date" v-model="joinDate">
                 <label class="label"></label>
               </div>
             </div>
           </div>
-          <button type="submit" class="register" @click.prevent="registerUser">Register</button>
+          <button type="submit" class="register">Register</button>
           <span class="bottom_text">Already have an account? <router-link to="/"><label class="switch" for="login_toggle"> Login</label></router-link></span>
         </form>
       </div>
@@ -56,10 +56,9 @@
   </div>
 </template>
   
-<script>
+<!-- <script>
 import NavBar from '../components/NavBar.vue'
 import axios from 'axios'
-
 export default {
   components: {
     NavBar
@@ -78,7 +77,6 @@ export default {
       }
     }
   },
-
   methods: {
     registerUser() {
       console.log("Submitting registration form...");
@@ -92,10 +90,54 @@ export default {
           console.log(error);
           // handle registration error
         })
-    }
+    },
   }
 }
+</script> -->
+<script>
+import NavBar from '../components/NavBar.vue'
+// import axios from 'axios'
+export default {
+    name: "RegisterView",
+    components: {
+        NavBar
+    },
+    data() {
+        return {
+            firstName: '',
+            lastName: '',
+            gender: '',
+            cellphoneNumber: '',
+            emailAdd: '',
+            userPass: '',
+            userRole: '',
+            userProfile: '',
+            joinDate: ''
+        };
+    },
+    computed: {
+        user() {
+            return this.$store.state.user;
+        },
+    },
+    methods: {
+        register() {
+            return this.$store.dispatch("register", {
+                firstName: this.firstName,
+                lastName: this.lastName,
+                gender: this.gender,
+                cellphoneNumber: this.cellphoneNumber,
+                emailAdd: this.emailAdd,
+                userPass: this.userPass,
+                userRole: this.userRole,
+                userProfile: this.userProfile,
+                joinDate: this.joinDate
+            });
+        },
+    },
+};
 </script>
+
 
   
   <style scoped>

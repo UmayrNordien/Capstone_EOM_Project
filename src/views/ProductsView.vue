@@ -162,7 +162,7 @@ export default {
   padding: 0;
   transform: translateY(-20px);
   transition: 0.4s ease-out;
-  border: #FD0363 0.2em solid;
+  /* border: #FD0363 0.2em solid; */
   border-radius: 2.5rem 0 2.5rem 0; /* how to make it so that the border wraps around the image with no space or the image having this border upon hover */
 }
 

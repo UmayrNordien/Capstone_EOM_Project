@@ -3,21 +3,22 @@
       <div class="container">
 <input id="register_toggle" type="checkbox">
 <div class="slider">
-  <form class="form">
+  <form class="form" @submit.prevent="login">
     <span class="title">Login</span>
     <div class="form_control">
-  <input required="" v-model="emailAdd" class="input" type="email">
+  <input required v-model="emailAdd" class="input" type="email">
   <label class="label">Email</label>
 </div>
 
     <div class="form_control">
-      <input required="" v-model="userPass" class="input" type="password">
+      <input required v-model="userPass" class="input" type="password">
       <label class="label">Password</label>
     </div>
     <button class="login" @click="login">Login</button>
 
     <span class="bottom_text">Don't have an account? <router-link to="/register"><label class="switch" for="login_toggle">Register</label></router-link></span>
   </form>
+  <div v-if="user"><h2>Welcome {{ user.firstName }} {{ user.lastName }}</h2></div>
   </div>
 </div>
   <NavBar></NavBar>
@@ -26,36 +27,34 @@
 
 <script>
 import NavBar from '../components/NavBar.vue'
-import axios from 'axios'
 
 export default {
   components: {
-      NavBar
+    NavBar
   },
-  data() {
-  return {
-    emailAdd: '',
-    userPass: '',
-  }
-},
-
-methods: {
-  login() {
-    console.log('Submitting login credentials...');
-    axios
-      .post('https://capstone-ecommerce.onrender.com/users', {
-        email: this.emailAdd,
-        userPass: this.userPass
-      })
-      .then(response => {
-        localStorage.setItem('token', response.data.token);
-      })
-      .catch(error => {
-        console.log(error);
-      })
-  }
-}
-}
+    computed: {
+        user() {
+            return this.$store.state.user;
+        },
+    },
+    data() {
+        return {
+            emailAdd: "",
+            userPass: "",
+        };
+    },
+    methods: {
+        login() {
+            this.$store.dispatch("login", {
+                emailAdd: this.emailAdd,
+                userPass: this.userPass,
+            });
+        },
+        log(){
+            alert("Logged in")
+        }
+    },
+};
 </script>
 
 <style scoped>
