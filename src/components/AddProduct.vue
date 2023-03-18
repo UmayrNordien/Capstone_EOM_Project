@@ -4,23 +4,6 @@
       <button type="button" class="btn btn-primary mt-4 mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal2">
         Create New Product
       </button>
-      <!--Table-->
-      <div class="table-responsive">
-        <table class="table text-black">
-          <thead>
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Description</th>
-              <th scope="col">Price</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Edit</th>
-              <th scope="col">Delete</th>
-            </tr>
-          </thead>
-          <tbody class="tbody" id="tbody">
-          </tbody>
-        </table>
-      </div>
       <!--Modal-->
       <section id="modal" class="admin-bg">
         <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
@@ -57,7 +40,7 @@
     </div>
   </template>
   
-  <script>
+<script>
   export default {
     name: 'AddProduct',
     data() {
@@ -81,9 +64,9 @@
       }
     }
   }
-  </script>
+</script>
   
-  <style scoped>
+<style scoped>
   .btn {
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -102,14 +85,6 @@
     padding: 0.7em;
     transition: .4s ease-in-out;
   }
-  
-  .input:hover {
-    box-shadow: 6px 6px 0px #969696,
-  }
-.input:focus {
-background: #ffffff;
-box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
-}
 .btn {
   display: inline-block;
   background: #CC095D;
@@ -123,6 +98,7 @@ box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
     transition: background 0.5s ease-out;
     border: none;
 }
+
 #add-btn{
   font-size: 9px;
   align-items: center !important;

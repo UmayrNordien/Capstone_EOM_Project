@@ -1,151 +1,136 @@
 <template>
-  <SpinnerC v-if="isloading"/>
-  <div v-else>
-    
-    <!-- The User Table -->
-    <div  class="table-responsive">
-      <div class="table-wrapper">
-        <div class="table-title">
-          <div class="row">
-            <div class="col-sm-8">
-              <h3>Users</h3>
-            </div>
-            <div class="col.sm-4"> 
-              </div>
-          </div>
-        </div>
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>UserID</th>
-              <th>Image</th>
-              <th>Name</th>
-              <th>Surname</th>
-              <th>Phone No.</th>
-              <th>Email</th>
-              <th>User Pass</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody >
-            <tr v-for="person in users" :key="person">
-              <td>{{ person.userID }} </td>
-              <td><img :src="person.imgURL" alt="prod.img" style="max-height: 10px;"></td>
-              <td>{{ person.firstName }}</td>
-              <td>{{ person.lastName }}</td>
-              <td>{{ person.cellphoneNumber }}</td>
-              <td>{{ person.emailAdd }}</td>
-              <td>{{ person.userPass }}</td>
-              <td> 
-                <button><UpdateUser/></button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+  <div class="admin">
+    <div v-if="spinner" class="d-flex justify-content-center">
+      <SpinnerC />
     </div>
 
-    <!-- Products Table -->
-    <div class="table-responsive">
-      <div class="table-wrapper">
-        <div class="table-title">
-          <div class="row">
-            <div class="col-sm-8">
-              <h3>Product</h3>
-            </div>
-            <div class="col.sm-4"> 
-              <button> <AddProduct/> </button>
-            </div>
-          </div>
-        </div>
-        <table class="table table-bordered">
+    <div v-else-if="!spinner">
+
+      <!--PRODUCTS TABLE-->
+      <div class="productsTable">
+        <h2 class="fw-bold">Products</h2>
+        <table class="table table-hover table-striped table-darker mx-auto">
           <thead>
             <tr>
-              <th>prodID</th>
-              <th>Image</th>
-              <th>Name</th>
-              <th>Product Description</th>
-              <th>Category</th>
-              <th>Price</th>
-              <th></th>
+              <th class="fw-bold">Name</th>
+              <th class="d-none d-sm-table-cell fw-bold">Description</th>
+              <th class="fw-bold">Price</th>
+              <th class="fw-bold">Quantity</th>
+              <th class="d-none d-sm-table-cell fw-bold">Image</th>
+              <th class="fw-bold">Edit/Del</th>
             </tr>
           </thead>
-          <tbody >
+          <tbody>
             <tr v-for="product in products" :key="product">
-              <td>{{ product.prodId }} </td>
-              <td><img :src="product.imgURL" alt={{product.imgURL}} style="max-height: 60px;"></td>
               <td>{{ product.name }}</td>
-              <td>{{ product.description }}</td>
-              <td>{{ product.category }}</td>
+              <td class="d-none d-sm-table-cell">{{ product.description }}</td>
               <td>R{{ product.price }}</td>
-              <td> 
-                <i><UpdateProduct :product="product" :productId="product.id"/></i>
-                
-                <i class="fa fa-trash" v-on:click="deleteProduct(product.id)"><DeleteProduct/> </i>
+              <td>{{ product.quantity }}</td>
+              <td class="d-none d-sm-table-cell">
+                <img :src="product.imgURL" :alt="product.name" width="85" height="75">
+              </td>
+              <td>
+                <UpdateProduct :product="product" class="btn btn-outline-dark" />
+                <button class="btn btn-outline-danger" v-on:click="deleteProduct(product)">X</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <AddProduct/>
+      </div>
+
+      <!--USERS TABLE-->
+      <div class="usersTable pb-2">
+        <h2 class="fw-bold">Users</h2>
+        <table class="table table-hover table-striped table-darker mx-auto">
+          <thead>
+            <tr>
+              <th class="fw-bold">Name</th>
+              <th class="fw-bold">Email</th>
+              <th class="fw-bold">Role</th>
+              <th class="fw-bold">Password</th>
+              <th class="d-none d-sm-table-cell fw-bold">Join Date</th>
+              <th class="d-none d-sm-table-cell fw-bold">Profile Image</th>
+              <th class="fw-bold">Edit/Del</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="user in users" :key="user">
+              <td>{{ user.firstName }} {{ user.lastName }}</td>
+              <td>{{ user.emailAdd }}</td>
+              <td>{{ user.userRole }}</td>
+              <td>{{ user.userPass }}</td>
+              <td class="d-none d-sm-table-cell">{{ user.joinDate }}</td>
+              <td class="d-none d-sm-table-cell">
+                <img class="rounded-circle" :src="user.userProfile" :alt="user.firstName + ' ' + user.lastName" width="85" height="75">
+              </td>
+              <td>
+                <UpdateUser :userDetails="user" class="btn outline-dark" />
+                <button class="btn btn-outline-danger" v-on:click="deleteUser(user)">X</button>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
+      <AddUser/>
     </div>
   </div>
+  <NavBar></NavBar>
 </template>
 
+
 <script>
+import NavBar from '@/components/NavBar.vue';
+import SpinnerC from '../components/ProductSpinner.vue';
+
+import { useStore } from 'vuex';
+import {computed} from '@vue/runtime-core';
+
 import UpdateProduct from '../components/UpdateProduct.vue';
 import AddProduct from '../components/AddProduct.vue';
 import UpdateUser from '../components/UpdateUser.vue';
-import {useStore} from 'vuex';
-import {computed} from '@vue/runtime-core';
-import SpinnerC from '../components/ProductSpinner.vue'
+import AddUser from '../components/AddUser.vue';
 
-export default {
-  setup(){
-    const store = useStore();
-    store.dispatch('fetchProducts');
-    store.dispatch('fetchUsers');
-
-    let user = computed(()=> store.state.user);
-    let products = computed(() => store.state.products);
-    let users = computed(() => store.state.users);
-
-    const deleteProduct = async (id) => {
-      store.dispatch('deletedProduct', id);
-      store.dispatch('fetchProducts');
-      location.reload();
-    }
-
-    return{
-      AddProduct,
-      products,
-      users,
-      user,
-      deleteProduct,
-    }
-  },
+export default{
   components: {
-    SpinnerC,
-    UpdateProduct,
-    AddProduct,
-    UpdateUser
-  },
-  data(){
-    return {
-      isLoading: true,
+        NavBar,
+        UpdateProduct,
+        AddProduct,
+        UpdateUser,
+        AddUser,
+        SpinnerC
+    },
+    setup(){
+        const store = useStore();
+        store.dispatch('fetchUsers');
+        store.dispatch('fetchProducts');
+        const users = computed(() => store.state.users);
+        const products = computed(() => store.state.products);
+        
+        let deleteProduct = async (product) => {
+            await store.dispatch('deleteProduct', product.prodID);
+            await store.dispatch('fetchProducts');
+        }
+        const spinner = computed(() => store.state.spinner);
+        return{
+            users,
+            products,
+            deleteProduct,
+            spinner
+        }
     }
-  },
-  created(){
-    setTimeout(()=> {
-      this.loading = false;
-    },2000);
-  }
 }
 </script>
 
 <style scoped>
-  
-.table{
-  max-width: 1100px;
-  margin: auto;
+  h1{
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+#products{
+  margin-bottom: 30vh;
+}
+.usersTable{
+  margin-top: 30vh;
 }
 </style>

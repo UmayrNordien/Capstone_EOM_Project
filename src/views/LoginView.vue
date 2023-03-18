@@ -16,18 +16,17 @@
     </div>
     <button class="login" @click="login">Login</button>
 
-    <span class="bottom_text">Don't have an account? <router-link to="/register"><label class="switch" for="login_toggle">Register</label></router-link></span>
+    <span class="bottom_text">Don't have an account? <router-link to="/register"><label class="switch" for="login_toggle">Register</label></router-link></span> 
   </form>
   <div v-if="user"><h2>Welcome {{ user.firstName }} {{ user.lastName }}</h2></div>
   </div>
 </div>
-  <NavBar></NavBar>
 </div>
+<NavBar></NavBar>
 </template>
 
 <script>
 import NavBar from '../components/NavBar.vue'
-
 export default {
   components: {
     NavBar
@@ -248,5 +247,9 @@ animation: gradient 2s linear infinite;
   color: #FD0363;
   text-shadow: 0 0 10px #FD0363;
 }
+}
+
+#admin-link{
+  text-decoration: none;
 }
 </style>

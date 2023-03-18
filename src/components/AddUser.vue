@@ -4,25 +4,6 @@
       <button type="button" class="btn btn-primary mt-4 mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal1">
         Create New User
       </button>
-      <!--Table-->
-      <div class="table container-fluid">
-        <div class="table-responsive px-3">
-          <table class="table text-black">
-            <thead>
-              <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Password</th>
-                <th scope="col">Edit</th>
-                <th scope="col">Delete</th>
-              </tr>
-            </thead>
-            <tbody class="tbody" id="tbody">
-              <!-- Add table rows here -->
-            </tbody>
-          </table>
-        </div>
-      </div>
       <!--Modal-->
       <section id="modal" class="admin-bg">
         <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

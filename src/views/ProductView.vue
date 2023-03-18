@@ -2,11 +2,12 @@
     <div id="product">
         <a class="book-container" href="" target="_blank" rel="noreferrer noopener">
             <div class="book">
-                <img alt="The Outstanding Developer by Sebastien Castiel" src="https://i.postimg.cc/Vkd22MxL/1303.jpg" />
+                <img alt="" src="https://i.postimg.cc/Vkd22MxL/1303.jpg" />
             </div>
         </a>
+        <NavBar></NavBar>
     </div>
-    <NavBar></NavBar>
+
 </template>
 
 <script>

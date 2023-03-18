@@ -49,7 +49,7 @@
 			</div>
 
 	<div class="container">
-      <div class="row" v-if="!isLoading && products">
+      <div class="row" v-if="22 && products">
         <div v-for="product in products" :key="product.name" class="col-lg-4 col-md-6 mb-4">
           <div class="card h-100">
             <img class="card-img-top mx-auto mt-5" :src="product.imgURL" :alt="product.name" style="width: 160px; height: 200px;">
