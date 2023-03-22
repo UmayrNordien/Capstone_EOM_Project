@@ -6,7 +6,7 @@ export default createStore({
     users: null,
     user: null,
     products: null,
-    product: null,
+    product: [],
     showSpinner: true,
     message: null
   },
@@ -91,10 +91,10 @@ export default createStore({
     },
     async fetchProducts(context) {
       const res = 
-      await axios.get(`${aStoreURL}product`);
+      await axios.get(`${aStoreURL}products`);
       const {results, err} = await res.data;
       if(results) {
-          context.commit('setProduct', results);
+          context.commit('setProducts', results);
           context.commit('setSpinner', false);
       }
       if(err) {
@@ -112,7 +112,8 @@ export default createStore({
       }
       if(err) {
           context.commit('setMessage', err)
-      }    
+      }
+      console.log("single product view");
     },
     async updateProduct(context, payload) {
       const res = 

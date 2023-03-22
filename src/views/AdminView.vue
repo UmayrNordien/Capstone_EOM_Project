@@ -30,7 +30,7 @@
                 <img :src="product.imgURL" :alt="product.name" width="85" height="75">
               </td>
               <td>
-                <UpdateProduct :product="product" class="btn btn-outline-dark" />
+                <UpdateProduct :product="product" class="btn btn-success"/>
                 <button class="btn btn-outline-danger" v-on:click="deleteProduct(product)">X</button>
               </td>
             </tr>
@@ -65,7 +65,7 @@
                 <img class="rounded-circle" :src="user.userProfile" :alt="user.firstName + ' ' + user.lastName" width="85" height="75">
               </td>
               <td>
-                <UpdateUser :userDetails="user" class="btn outline-dark" />
+                <UpdateUser :userDetails="user" class="btn outline-dark"/>
                 <button class="btn btn-outline-danger" v-on:click="deleteUser(user)">X</button>
               </td>
             </tr>
@@ -81,7 +81,6 @@
 
 <script>
 import NavBar from '@/components/NavBar.vue';
-import SpinnerC from '../components/ProductSpinner.vue';
 
 import { useStore } from 'vuex';
 import {computed} from '@vue/runtime-core';
@@ -90,6 +89,8 @@ import UpdateProduct from '../components/UpdateProduct.vue';
 import AddProduct from '../components/AddProduct.vue';
 import UpdateUser from '../components/UpdateUser.vue';
 import AddUser from '../components/AddUser.vue';
+
+import SpinnerC from '../components/ProductSpinner.vue';
 
 export default{
   components: {
@@ -133,4 +134,12 @@ export default{
 .usersTable{
   margin-top: 30vh;
 }
+
+/* button{
+  border: 1px solid black;
+  display: inline block;
+  border-bottom: 5px !important;
+  width: fit-content;
+  background-color: rgb(140, 140, 140);
+} */
 </style>

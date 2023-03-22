@@ -1,16 +1,16 @@
 <template>
     <div>
       <!--Create new Product-->
-      <button type="button" class="btn btn-primary mt-4 mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+      <button type="button" class="btn btn-primary mt-4 mb-4" data-bs-toggle="modal" data-bs-target="#userModal1">
         Create New User
       </button>
       <!--Modal-->
       <section id="modal" class="admin-bg">
-        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="userModal1" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title mx-auto me-3" id="exampleModalLabel">New User</h5>
+                <h5 class="modal-title mx-auto me-3" id="userModalLabel">New User</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">

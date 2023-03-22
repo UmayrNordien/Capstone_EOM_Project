@@ -35,10 +35,15 @@ const routes = [
     component: () => import('../views/ProductsView.vue')
   },
   {
-    path: '/product',
+    path: '/product/:id',
     name: 'product',
     component: () => import('../views/ProductView.vue')
   },
+  // {
+  //   path: '/product/',
+  //   name: 'product',
+  //   component: () => import('../views/ProductView.vue')
+  // },
   {
     path: '/register',
     name: 'register',

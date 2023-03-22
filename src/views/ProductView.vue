@@ -1,8 +1,8 @@
-<template>
+<!-- <template>
     <div id="product">
         <a class="book-container" href="" target="_blank" rel="noreferrer noopener">
             <div class="book">
-                <img alt="" src="https://i.postimg.cc/Vkd22MxL/1303.jpg" />
+                <img alt="" src="https://i.postimg.cc/Vkd22MxL/1303.jpg"/>
             </div>
         </a>
         <NavBar></NavBar>
@@ -12,19 +12,21 @@
 
 <script>
 import NavBar from '@/components/NavBar.vue';
-// import { useStore } from 'vuex';
-// import {computed} from '@vue/runtime-core';
+
+import { useStore } from 'vuex';
+import {computed} from '@vue/runtime-core';
+
 export default{
-    // setup(){
-    //     const store = useStore();
-    //     const user = computed(() => store.state.user);
-    //     store.dispatch('fetchProductById');
-    //     const product = computed(() => store.state.product);
-    //     return{
-    //         user,
-    //         product,
-    //     }
-    // },
+    setup(){
+        const store = useStore();
+        const user = computed(() => store.state.user);
+        store.dispatch('fetchProductById');
+        const product = computed(() => store.state.product);
+        return{
+            user,
+            product,
+        }
+    },
     components: {
         NavBar
     }
@@ -139,4 +141,121 @@ div {
     background-color: #01060f;
     border-radius: 0 2px 2px 0;
 }
+</style> -->
+
+<template>
+    <div id="product">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top mx-auto mt-5" :src="product?.imgURL" :alt="product.name"
+                            style="width: 100%; max-height: 300px; object-fit: contain;" />
+                        <div class="card-body">
+                            <h4 class="card-title">{{ product?.name }}</h4>
+                            <h6>[{{ product?.category }}]</h6>
+                            <h5>R{{ product?.price }}</h5>
+                            <p class="card-text">{{ product?.description }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <router-link to="/cart">
+                                <a href="#" class="btn btn-outline-light">Add To Cart</a>
+                            </router-link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <NavBar/>
+    </div>
+</template>
+  
+<script>
+import NavBar from "@/components/NavBar.vue";
+
+export default {
+    components: {
+        NavBar,
+    },
+    computed: {
+        product: function () {
+            return this.$store.state.product;
+        },
+    },
+    created() {
+        this.$store.dispatch("fetchProduct", this.$route.params.id);
+    },
+};
+</script>
+  
+<style scoped>
+#product {
+    background: url(https://i.postimg.cc/6q5hXj2z/World-Book-Day-2000-x-2000-px-4.jpg) fixed;
+    background-size: contain;
+    background-repeat: repeat-y;
+    width: 100%;
+    height: 100vh !important;
+}
+
+.card {
+    margin-top: 23vh;
+    background: -webkit-linear-gradient(to left, #fffcdc, #212121);
+    background: linear-gradient(to left, #8d8d8d, #212121);
+
+    border-radius: 1rem;
+    border: #b8b8b8 0.2rem solid;
+    transition: all 0.4s ease-in;
+    box-shadow: 0.4rem 0.4rem 0.6rem #00000040;
+    position: relative;
+    color: #FFFFFF;
+}
+
+.card h6 {
+    color: #FD0363;
+    font-weight: bold;
+}
+
+.card:hover {
+    transform: translateY(-20px);
+    transition: 0.4s ease-out;
+    border: #FD0363 0.2em solid;
+    border-radius: 2.5rem 0 2.5rem 0;
+    opacity: 100%;
+    background: #212121;
+    transform: scale(1);
+    color: white;
+}
+
+.card-body {
+    text-align: center;
+    padding-bottom: 0;
+}
+
+.card-footer {
+    border-radius: 1rem;
+    background-color: transparent;
+    border-top: none;
+    text-align: center;
+    padding-top: 0;
+}
+
+.container img:hover {
+    width: 150%;
+    height: 150%;
+    object-fit: contain;
+    transform: scale(2.2);
+    transition: 2s;
+    margin: 0;
+    padding: 0;
+    transform: translateY(-20px);
+    transition: 0.4s ease-out;
+    /* border: #FD0363 0.2em solid; */
+    border-radius: 2.5rem 0 2.5rem 0;
+    /* how to make it so that the border wraps around the image with no space or the image having this border upon hover */
+}
 </style>
+  
+
+<!--ERRORS:-->
+<!--adding ? on the img removes the error Cannot read properties of null (reading 'imgURL')-->
+<!--removing the alt = no error-->

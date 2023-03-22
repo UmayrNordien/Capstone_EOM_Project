@@ -1,58 +1,67 @@
 <template>
-	<div id="products">
+  <div id="products">
 
-		<div class="slider">
-			<div class="slide-track">
-				<div class="slide">
-					<img src="" height="100" width="250" alt="" />
-				</div>
-				<div class="slide">
-					<img src="" height="100" width="250" alt="" />
-				</div>
-				<div class="slide">
-					<img src="" height="100" width="250" alt="" />
-				</div>
-				<div class="slide">
-					<img src="" height="100" width="250" alt="" />
-				</div>
-				<div class="slide">
-					<img src="" height="100" width="250" alt="" />
-				</div>
-				<div class="slide">
-					<img src="" height="100" width="250" alt="" />
-				</div>
-				<div class="slide">
-					<img src="" height="100" width="250" alt="" />
-				</div>
-				<div class="slide">
-					<img src="" height="100" width="250" alt="" />
-				</div>
-				<div class="slide">
-					<img src="" height="100" width="250" alt="" />
-				</div>
-				<div class="slide">
-					<img src="" height="100" width="250" alt="" />
-				</div>
-				<div class="slide">
-					<img src="" height="100" width="250" alt="" />
-				</div>
-				<div class="slide">
-					<img src="" height="100" width="250" alt="" />
-				</div>
-				<div class="slide">
-					<img src="" height="100" width="250" alt="" />
-				</div>
-				<div class="slide">
-					<img src="" height="100" width="250" alt="" />
-				</div>
-		</div>
-			</div>
+    <div class="slider">
+      <div class="slide-track">
+        <div class="slide">
+          <img src="" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="" height="100" width="250" alt="" />
+        </div>
+        <div class="slide">
+          <img src="" height="100" width="250" alt="" />
+        </div>
+      </div>
+    </div>
 
-	<div class="container">
-      <div class="row" v-if="22 && products">
+    <div class="filters mx-auto">
+      <label for="minPrice">Minimum Price:</label>
+      <input type="number" id="minPrice" v-model="minPrice">
+      <label for="maxPrice">Maximum Price:</label>
+      <input type="number" id="maxPrice" v-model="maxPrice">
+      <button @click="getProducts()">Filter</button>
+    </div>
+
+    <div class="container">
+      <div class="row" v-if="products">
         <div v-for="product in products" :key="product.name" class="col-lg-4 col-md-6 mb-4">
           <div class="card h-100">
-            <img class="card-img-top mx-auto mt-5" :src="product.imgURL" :alt="product.name" style="width: 160px; height: 200px;">
+            <img class="card-img-top mx-auto mt-5" :src="product.imgURL" :alt="product.name"
+              style="width: 160px; height: 200px;">
             <div class="card-body">
               <h4 class="card-title">{{ product.name }}</h4>
               <h6>[{{ product.category }}]</h6>
@@ -60,7 +69,7 @@
               <p class="card-text">{{ product.description }}</p>
             </div>
             <div class="card-footer">
-              <RouterLink to=/product><a href="#" class="btn btn-outline-light">View More</a></RouterLink>
+              <RouterLink to=/product/:id><a href="#" class="btn btn-outline-light">View More</a></RouterLink>
             </div>
           </div>
         </div>
@@ -69,7 +78,6 @@
     <NavBar></NavBar>
     <SpinnerC v-if="isLoading" />
   </div>
-
 </template>
   
 <script>
@@ -80,17 +88,23 @@ import SpinnerC from '../components/ProductSpinner.vue';
 export default {
   data() {
     return {
-      products: [],
+      products: null,
       isLoading: true,
-      sortDir: 'asc'
+      sortDir: 'asc',
+      minPrice: null,
+      maxPrice: null
     };
   },
   methods: {
     async getProducts() {
-      let res = await axios.get('https://capstone-ecommerce.onrender.com/products');
+      let url = 'https://capstone-ecommerce.onrender.com/products';
+      if (this.minPrice && this.maxPrice) {
+        url += `?min_price=${this.minPrice}&max_price=${this.maxPrice}`;
+      }
+      let res = await axios.get(url);
       let { results } = await res.data;
       this.products = results;
-    },
+    }
   },
   created() {
     setTimeout(() => {
@@ -99,6 +113,14 @@ export default {
   },
   mounted() {
     this.getProducts();
+  },
+  watch: {
+    minPrice: function() {
+      this.getProducts();
+    },
+    maxPrice: function() {
+      this.getProducts();
+    }
   },
   components: {
     SpinnerC,
