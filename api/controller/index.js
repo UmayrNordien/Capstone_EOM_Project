@@ -42,6 +42,7 @@ router.delete('/user/:id', (req, res)=>{
 
 
 // =====Products======
+//check if up to date
 // View all products
 router.get('/products', (req, res)=> {
     product.fetchProducts(req, res);
