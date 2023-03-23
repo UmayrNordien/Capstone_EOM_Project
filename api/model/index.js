@@ -13,7 +13,7 @@ class User {
         `
         SELECT firstName, lastName, gender, cellphoneNumber, emailADD, userPass, userRole, userProfile, joinDate
         FROM Users
-        WHERE emailDD = '${email}';
+        WHERE emailAdd = '${email}';
         `;
         db.query(querySt, async (err, data)=>{
             if(err) throw err;
@@ -280,7 +280,7 @@ class Order {
 }
 
 
-//============= Cart =============//
+// //============= Cart =============//
 // class Cart {
 //     // Fetch all carts
 //     static fetchCart(req, res) {
@@ -312,9 +312,9 @@ class Order {
   
 //     // Add a new cart
 //     static addCart(req, res) {
-//       const { userID, productID, quantity } = req.body;
-//       const query = 'INSERT INTO Cart (userID, productID, quantity) VALUES (?, ?, ?)';
-//       db.query(query, [userID, productID, quantity], (err, results) => {
+//       const { user_id, id, quantity } = req.body;
+//       const query = 'INSERT INTO Cart (user_id, id, quantity) VALUES (?, ?, ?)';
+//       db.query(query, [user_id, id, quantity], (err, results) => {
 //         if (err) {
 //           console.error(err);
 //           return res.status(500).json({ message: 'Server error' });
@@ -326,9 +326,9 @@ class Order {
 //     // Update a cart by id
 //     static updateCart(req, res) {
 //       const { id } = req.params;
-//       const { userID, productID, quantity } = req.body;
-//       const query = 'UPDATE Cart SET userID = ?, productID = ?, quantity = ? WHERE cartID = ?';
-//       db.query(query, [userID, productID, quantity, id], (err, results) => {
+//       const { user_id, id, quantity } = req.body;
+//       const query = 'UPDATE Cart SET user_id = ?, id = ?, quantity = ? WHERE cartID = ?';
+//       db.query(query, [user_id, id, quantity, id], (err, results) => {
 //         if (err) {
 //           console.error(err);
 //           return res.status(500).json({ message: 'Server error' });
@@ -363,3 +363,4 @@ module.exports = {
     Order,
     // Cart
 }
+
