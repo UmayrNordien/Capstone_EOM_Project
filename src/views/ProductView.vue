@@ -149,7 +149,7 @@ div {
             <div class="row justify-content-center">
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100">
-                        <img class="card-img-top mx-auto mt-5" :src="product?.imgURL" :alt="product.name"
+                        <img class="card-img-top mx-auto mt-5" :src="product?.imgURL" :alt="product?.name"
                             style="width: 100%; max-height: 300px; object-fit: contain;" />
                         <div class="card-body">
                             <h4 class="card-title">{{ product?.name }}</h4>
@@ -201,7 +201,7 @@ export default {
 }
 
 .card {
-    margin-top: 23vh;
+    margin-top: 10vh;
     background: -webkit-linear-gradient(to left, #fffcdc, #212121);
     background: linear-gradient(to left, #8d8d8d, #212121);
 

@@ -14,14 +14,11 @@
             <input required v-model="userPass" class="input" type="password">
             <label class="label">Password</label>
           </div>
-          <button class="login" @click="login">Login</button>
+          <button type="submit" class="login" @submit.prevent="login">Login</button>
 
           <span class="bottom_text">Don't have an account? <router-link to="/register"><label class="switch"
                 for="login_toggle">Register</label></router-link></span>
         </form>
-        <div v-if="user">
-          <h2>Welcome {{ user.firstName }} {{ user.lastName }}</h2>
-        </div>
       </div>
     </div>
   </div>
@@ -29,36 +26,45 @@
 <FooterC></FooterC></template>
 
 <script>
-import NavBar from '../components/NavBar.vue'
+import NavBar from '@/components/NavBar.vue';
 import FooterC from '@/components/FooterC.vue';
 
 export default {
-  components: {
-    NavBar,
-    FooterC
-  },
-  computed: {
-    user() {
-      return this.$store.state.user;
-    },
-  },
   data() {
     return {
       emailAdd: "",
       userPass: "",
+      isLoading: false,
     };
   },
+  computed: {
+    message() {
+      return this.$store.state.message;
+    },
+  },
   methods: {
-    login() {
-      this.$store.dispatch("login", {
+    async login() {
+      this.isLoading = true;
+      const userData = {
         emailAdd: this.emailAdd,
         userPass: this.userPass,
-      });
+      };
+      try {
+        await this.$store.dispatch("login", userData);
+        // Redirect the user to products after login
+        this.$router.push("/products");
+      } catch (error) {
+        console.log(error.message);
+        // Handle error message display
+      } finally {
+        this.isLoading = false;
+      }
     },
-    log() {
-      alert("Logged in")
-    }
   },
+  components: {
+    NavBar,
+    FooterC
+  }
 };
 </script>
 

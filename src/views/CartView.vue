@@ -41,6 +41,7 @@
     components: {
       SpinnerC,
     },
+    
   };
   </script>
   

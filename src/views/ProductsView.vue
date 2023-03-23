@@ -64,7 +64,7 @@
               <p class="card-text">{{ product.description }}</p>
             </div>
             <div class="card-footer">
-              <RouterLink to=/product/:id><a href="#" class="btn btn-outline-light">View More</a></RouterLink>
+              <RouterLink :to="{name: 'product', params: {id: product.id}}"><a href="#" class="btn btn-outline-light">View More</a></RouterLink>
             </div>
           </div>
         </div>

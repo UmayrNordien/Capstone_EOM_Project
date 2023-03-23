@@ -132,7 +132,7 @@ export default{
   margin-bottom: 30vh;
 }
 .usersTable{
-  margin-top: 30vh;
+  margin-top: 5vh;
 }
 
 /* button{
