@@ -54,15 +54,18 @@
 </div>
     <NavBar></NavBar>
   </div>
+  <FooterC></FooterC>
 </template>
 
 <script>
 import NavBar from '../components/NavBar.vue'
+import FooterC from '@/components/FooterC.vue';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 
 export default {
   components: {
     NavBar,
+    FooterC
 }
 
 // $('input').on('change', function() {

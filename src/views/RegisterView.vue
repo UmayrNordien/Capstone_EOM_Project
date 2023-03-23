@@ -48,12 +48,14 @@
             </div>
           </div>
           <button type="submit" class="register">Register</button>
-          <span class="bottom_text">Already have an account? <router-link to="/"><label class="switch" for="login_toggle"> Login</label></router-link></span>
+          <span class="bottom_text">Already have an account? <router-link to="/"><label class="switch" for="login_toggle">
+                Login</label></router-link></span>
         </form>
       </div>
     </div>
     <NavBar></NavBar>
   </div>
+  <FooterC></FooterC>
 </template>
   
 <!-- <script>
@@ -96,45 +98,48 @@ export default {
 </script> -->
 <script>
 import NavBar from '../components/NavBar.vue'
+import FooterC from '@/components/FooterC.vue';
 // import axios from 'axios'
+
 export default {
-    name: "RegisterView",
-    components: {
-        NavBar
+  name: "RegisterView",
+  components: {
+    NavBar,
+    FooterC
+  },
+  data() {
+    return {
+      firstName: '',
+      lastName: '',
+      gender: '',
+      cellphoneNumber: '',
+      emailAdd: '',
+      userPass: '',
+      userRole: '',
+      userProfile: '',
+      joinDate: ''
+    };
+  },
+  computed: {
+    user() {
+      return this.$store.state.user;
     },
-    data() {
-        return {
-            firstName: '',
-            lastName: '',
-            gender: '',
-            cellphoneNumber: '',
-            emailAdd: '',
-            userPass: '',
-            userRole: '',
-            userProfile: '',
-            joinDate: ''
-        };
+  },
+  methods: {
+    register() {
+      return this.$store.dispatch("register", {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        gender: this.gender,
+        cellphoneNumber: this.cellphoneNumber,
+        emailAdd: this.emailAdd,
+        userPass: this.userPass,
+        userRole: this.userRole,
+        userProfile: this.userProfile,
+        joinDate: this.joinDate
+      });
     },
-    computed: {
-        user() {
-            return this.$store.state.user;
-        },
-    },
-    methods: {
-        register() {
-            return this.$store.dispatch("register", {
-                firstName: this.firstName,
-                lastName: this.lastName,
-                gender: this.gender,
-                cellphoneNumber: this.cellphoneNumber,
-                emailAdd: this.emailAdd,
-                userPass: this.userPass,
-                userRole: this.userRole,
-                userProfile: this.userProfile,
-                joinDate: this.joinDate
-            });
-        },
-    },
+  },
 };
 </script>
 

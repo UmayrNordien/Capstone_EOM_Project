@@ -168,14 +168,17 @@ div {
         </div>
         <NavBar/>
     </div>
+    <FooterC></FooterC>
 </template>
   
 <script>
 import NavBar from "@/components/NavBar.vue";
+import FooterC from "@/components/FooterC.vue";
 
 export default {
     components: {
         NavBar,
+        FooterC
     },
     computed: {
         product: function () {

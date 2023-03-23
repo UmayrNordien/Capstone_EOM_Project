@@ -1,58 +1,64 @@
 <template>
   <div id="login">
-      <div class="container">
-<input id="register_toggle" type="checkbox">
-<div class="slider">
-  <form class="form" @submit.prevent="login">
-    <span class="title">Login</span>
-    <div class="form_control">
-  <input required v-model="emailAdd" class="input" type="email">
-  <label class="label">Email</label>
-</div>
+    <div class="container">
+      <input id="register_toggle" type="checkbox">
+      <div class="slider">
+        <form class="form" @submit.prevent="login">
+          <span class="title">Login</span>
+          <div class="form_control">
+            <input required v-model="emailAdd" class="input" type="email">
+            <label class="label">Email</label>
+          </div>
 
-    <div class="form_control">
-      <input required v-model="userPass" class="input" type="password">
-      <label class="label">Password</label>
+          <div class="form_control">
+            <input required v-model="userPass" class="input" type="password">
+            <label class="label">Password</label>
+          </div>
+          <button class="login" @click="login">Login</button>
+
+          <span class="bottom_text">Don't have an account? <router-link to="/register"><label class="switch"
+                for="login_toggle">Register</label></router-link></span>
+        </form>
+        <div v-if="user">
+          <h2>Welcome {{ user.firstName }} {{ user.lastName }}</h2>
+        </div>
+      </div>
     </div>
-    <button class="login" @click="login">Login</button>
-
-    <span class="bottom_text">Don't have an account? <router-link to="/register"><label class="switch" for="login_toggle">Register</label></router-link></span> 
-  </form>
-  <div v-if="user"><h2>Welcome {{ user.firstName }} {{ user.lastName }}</h2></div>
   </div>
-</div>
-</div>
-<NavBar></NavBar>
-</template>
+  <NavBar></NavBar>
+<FooterC></FooterC></template>
 
 <script>
 import NavBar from '../components/NavBar.vue'
+import FooterC from '@/components/FooterC.vue';
+
 export default {
   components: {
-    NavBar
+    NavBar,
+    FooterC
   },
-    computed: {
-        user() {
-            return this.$store.state.user;
-        },
+  computed: {
+    user() {
+      return this.$store.state.user;
     },
-    data() {
-        return {
-            emailAdd: "",
-            userPass: "",
-        };
+  },
+  data() {
+    return {
+      emailAdd: "",
+      userPass: "",
+    };
+  },
+  methods: {
+    login() {
+      this.$store.dispatch("login", {
+        emailAdd: this.emailAdd,
+        userPass: this.userPass,
+      });
     },
-    methods: {
-        login() {
-            this.$store.dispatch("login", {
-                emailAdd: this.emailAdd,
-                userPass: this.userPass,
-            });
-        },
-        log(){
-            alert("Logged in")
-        }
-    },
+    log() {
+      alert("Logged in")
+    }
+  },
 };
 </script>
 

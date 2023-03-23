@@ -48,17 +48,12 @@
       </div>
     </div>
 
-    <div class="filters mx-auto">
-      <label for="minPrice">Minimum Price:</label>
-      <input type="number" id="minPrice" v-model="minPrice">
-      <label for="maxPrice">Maximum Price:</label>
-      <input type="number" id="maxPrice" v-model="maxPrice">
-      <button @click="getProducts()">Filter</button>
-    </div>
-
     <div class="container">
-      <div class="row" v-if="products">
-        <div v-for="product in products" :key="product.name" class="col-lg-4 col-md-6 mb-4">
+      
+      <input class="mb-5" v-model="searchQuery" placeholder="Search...">
+
+      <div class="row" v-if="filteredProducts.length > 0">
+        <div v-for="product in filteredProducts" :key="product.name" class="col-lg-4 col-md-6 mb-4">
           <div class="card h-100">
             <img class="card-img-top mx-auto mt-5" :src="product.imgURL" :alt="product.name"
               style="width: 160px; height: 200px;">
@@ -74,6 +69,7 @@
           </div>
         </div>
       </div>
+      <FooterC></FooterC>
     </div>
     <NavBar></NavBar>
     <SpinnerC v-if="isLoading" />
@@ -84,6 +80,7 @@
 import NavBar from '@/components/NavBar.vue';
 import axios from 'axios';
 import SpinnerC from '../components/ProductSpinner.vue';
+import FooterC from '@/components/FooterC.vue';
 
 export default {
   data() {
@@ -91,16 +88,19 @@ export default {
       products: null,
       isLoading: true,
       sortDir: 'asc',
-      minPrice: null,
-      maxPrice: null
+      searchQuery: '',
     };
+  },
+  computed: {
+    filteredProducts() {
+      if (!this.products) return [];
+      const searchRegex = new RegExp(this.searchQuery, 'i');
+      return this.products.filter((product) => searchRegex.test(product.name));
+    },
   },
   methods: {
     async getProducts() {
       let url = 'https://capstone-ecommerce.onrender.com/products';
-      if (this.minPrice && this.maxPrice) {
-        url += `?min_price=${this.minPrice}&max_price=${this.maxPrice}`;
-      }
       let res = await axios.get(url);
       let { results } = await res.data;
       this.products = results;
@@ -114,17 +114,10 @@ export default {
   mounted() {
     this.getProducts();
   },
-  watch: {
-    minPrice: function() {
-      this.getProducts();
-    },
-    maxPrice: function() {
-      this.getProducts();
-    }
-  },
   components: {
     SpinnerC,
-    NavBar
+    NavBar,
+    FooterC
   }
 };
 </script>
@@ -141,8 +134,13 @@ export default {
 }
 
 @keyframes scroll {
-	0% { transform: translateX(0); }
-	100% { transform: translateX(calc(-250px * 7))}
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(-250px * 7))
+  }
 }
 
 .slider {
@@ -174,6 +172,7 @@ export default {
   object-fit: contain;
   transform: scale(1.1)
 }
+
 .container img:hover {
   width: 150%;
   height: 150%;
@@ -185,42 +184,45 @@ export default {
   transform: translateY(-20px);
   transition: 0.4s ease-out;
   /* border: #FD0363 0.2em solid; */
-  border-radius: 2.5rem 0 2.5rem 0; /* how to make it so that the border wraps around the image with no space or the image having this border upon hover */
+  border-radius: 2.5rem 0 2.5rem 0;
+  /* how to make it so that the border wraps around the image with no space or the image having this border upon hover */
 }
 
 @keyframes scroll {
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-1750px);
   }
 }
 
-.container { 
+.container {
   margin-top: 250px;
-  position:absolute;
+  position: absolute;
   flex-direction: column;
   align-items: center;
 }
 
-.card{
-  background: -webkit-linear-gradient(to left, #fffcdc, #212121);  
-  background: linear-gradient(to left, #8d8d8d, #212121); 
+.card {
+  background: -webkit-linear-gradient(to left, #fffcdc, #212121);
+  background: linear-gradient(to left, #8d8d8d, #212121);
 
   border-radius: 1rem;
   border: #b8b8b8 0.2rem solid;
   transition: all 0.4s ease-in;
   box-shadow: 0.4rem 0.4rem 0.6rem #00000040;
   position: relative;
-  color:#FFFFFF;
+  color: #FFFFFF;
 }
 
-.card h6{
+.card h6 {
   color: #FD0363;
   font-weight: bold;
 }
-.card:hover{
+
+.card:hover {
   transform: translateY(-20px);
   transition: 0.4s ease-out;
   border: #FD0363 0.2em solid;
@@ -231,8 +233,22 @@ export default {
   color: white;
 }
 
-.card-footer{
+.card-footer {
   background-color: transparent;
+}
+
+input{
+  height: 30px;
+  width: 190px;
+  text-align: center;
+  border: none;
+  border-radius: 1rem;
+  background: lightgrey;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 50px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 26px -18px inset;
+}
+
+input:focus {
+  outline: none;
 }
 </style>
   
