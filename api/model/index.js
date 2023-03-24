@@ -8,12 +8,12 @@ const { createToken } = require('../middleware/AuthenticateUser');
 //============= Users =============//
 class User {
     login(req, res) {
-        const {email, userPass} = req.body;
+        const {emailAdd, userPass} = req.body;
         const querySt = 
         `
         SELECT firstName, lastName, gender, cellphoneNumber, emailAdd, userPass, userRole, userProfile, joinDate
         FROM Users
-        WHERE emailAdd = '${email}';
+        WHERE emailAdd = '${emailAdd}';
         `;
         db.query(querySt, async (err, data)=>{
             if(err) throw err;
@@ -28,7 +28,7 @@ class User {
                         const jToken = 
                         createToken(
                             {
-                                email, userPass  
+                                emailAdd, userPass  
                             }
                         );
                         res.cookie('Valid User',
@@ -85,7 +85,7 @@ class User {
         info.userPass = await 
         hash(info.userPass, 15);
         let user = {
-            email: info.email,
+            emailAdd: info.emailAdd,
             userPass: info.userPass
         }
         
