@@ -8,48 +8,49 @@ const { createToken } = require('../middleware/AuthenticateUser');
 //============= Users =============//
 class User {
     login(req, res) {
-        const {emailAdd, userPass} = req.body;
-        const querySt = 
-        `
-        SELECT firstName, lastName, gender, cellphoneNumber, emailAdd, userPass, userRole, userProfile, joinDate
-        FROM Users
-        WHERE emailAdd = '${emailAdd}';
-        `;
-        db.query(querySt, async (err, data)=>{
-            if(err) throw err;
-            if((!data.length) || (data == null)) {
-                res.status(401).json({err: 
-                    "Incorrect email address"});
-            }else {
-                await compare(userPass, 
-                    data[0].userPass, 
-                    (uErr, uResult)=> {
-                        if(uErr) throw uErr;
-                        const jToken = 
-                        createToken(
-                            {
-                                emailAdd, userPass  
-                            }
-                        );
+        const {
+            emailAdd,
+            userPass
+        } = req.body;
+        const querySt =
+            `SELECT firstName, lastName, gender, cellphoneNumber, emailAdd, userPass, userRole, userProfile, joinDate
+        FROM Users 
+        WHERE emailAdd = '${emailAdd}' `;
+        DB.query(querySt, async (err, data) => {
+            if (err) throw err;
+            if ((!data.length) || (data == null)) {
+                res.status(401).json({
+                    err: "Incorrect email address"
+                });
+            } else {
+                await compare(userPass,
+                    data[0].userPass,
+                    (uErr, uResult) => {
+                        if (uErr) throw uErr;
+                        const jToken =
+                            createToken({
+                                emailAdd,
+                                userPass
+                            });
                         res.cookie('Valid User',
-                        jToken, {
-                            maxAge: 3600000,
-                            httpOnly: true
-                        })
-                        if(uResult) {
+                            jToken, {
+                                maxAge: 3600000,
+                                httpOnly: true
+                            })
+                        if (uResult) {
                             res.status(200).json({
-                                msg: 'Logged In',
+                                msg: 'Log in success',
                                 jToken,
                                 result: data[0]
                             })
-                        }else {
+                        } else {
                             res.status(401).json({
                                 err: 'Incorrect password'
                             })
                         }
                     })
             }
-        })     
+        })
     }
     fetchUsers(req, res) {
         const querySt = 
