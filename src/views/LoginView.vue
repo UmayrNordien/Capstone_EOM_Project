@@ -1,7 +1,7 @@
 <template>
-  <div id="login">
+  <div id="login" >
     <div class="container">
-      <input id="register_toggle" type="checkbox">
+      <input id="register_toggle" type="checkbox"> <!--v-if="loggedUser"-->
       <div class="slider">
         <form class="form" @submit.prevent="login">
           <span class="title">Login</span>
@@ -14,7 +14,7 @@
             <input required v-model="userPass" class="input" type="password">
             <label class="label">Password</label>
           </div>
-          <button type="submit" class="login" @submit.prevent="login">Login</button>
+          <button type="submit" class="login" v-on:click.prevent="login(payload)">Login</button>
 
           <span class="bottom_text">Don't have an account? <router-link to="/register"><label class="switch"
                 for="login_toggle">Register</label></router-link></span>
@@ -23,46 +23,43 @@
     </div>
   </div>
   <NavBar></NavBar>
+  <NavBar2></NavBar2>
 <FooterC></FooterC></template>
 
 <script>
 import NavBar from '@/components/NavBar.vue';
+import NavBar2 from '@/components/NavBar2.vue';
 import FooterC from '@/components/FooterC.vue';
 
 export default {
-  data() {
-    return {
-      emailAdd: "",
-      userPass: "",
-      isLoading: false,
-    };
-  },
-  computed: {
-    message() {
-      return this.$store.state.message;
+data() {
+  return {
+    payload: {
+      emailAdd: '',
+      userPass: ''
     },
+  }
+},
+computed: {
+  loggedUser() {
+    return this.$store.state.loggedUser;
+   
   },
-  methods: {
-    async login() {
-      this.isLoading = true;
-      const userData = {
-        emailAdd: this.emailAdd,
-        userPass: this.userPass,
-      };
-      try {
-        await this.$store.dispatch("login", userData);
-        // Redirect the user to products after login
-        this.$router.push("/products");
-      } catch (error) {
-        console.log(error.message);
-        // Handle error message display
-      } finally {
-        this.isLoading = false;
-      }
-    },
-  },
+ admin() {
+  return this.$store.state.admin;
+ }
+},
+methods: {
+  async login() {
+    await this.$store.dispatch("login", this.payload);
+    if (this.loggedUser, this.admin) {
+      alert('Log in successful')
+    }
+  }
+},
   components: {
     NavBar,
+    NavBar2,
     FooterC
   }
 };

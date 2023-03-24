@@ -26,7 +26,7 @@
                 <input type="text" v-model="payload.gender" placeholder="Gender" class="form-control my-3" required>
             </div>
             <div class="form-row">
-                <input type="email" v-model="payload.emailAddress" placeholder="Email Address" class="form-control my-3"
+                <input type="email" v-model="payload.emailAdd" placeholder="Email Address" class="form-control my-3"
                   required>
             </div>
             <div class="form-row">
@@ -59,7 +59,7 @@ export default {
         firstName: '',
         lastName: '',
         gender: '',
-        emailAddress: '',
+        emailAdd: '',
         userPass: '',
         userRole: '',
         userProfile: 'https://i.postimg.cc/W1zN5mG0/placeholderprofile.webp',

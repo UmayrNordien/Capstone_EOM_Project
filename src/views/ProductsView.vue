@@ -4,46 +4,46 @@
     <div class="slider">
       <div class="slide-track">
         <div class="slide">
-          <img src="" height="100" width="250" alt="" />
+          <img src="https://i.postimg.cc/7LPwrZHq/marvel-logo-34280.png" height="80" width="250" alt="Marvel Studios" />
         </div>
         <div class="slide">
-          <img src="" height="100" width="250" alt="" />
+          <img src="https://i.postimg.cc/RZNLscfm/comic-hdlogo-40813.png" height="100" width="250" alt="Comic Con" />
         </div>
         <div class="slide">
-          <img src="" height="100" width="250" alt="" />
+          <img src="https://i.postimg.cc/tJsgQCzs/vodafone-png-logo-8428.png" height="60" width="250" alt="Vodafone" />
         </div>
         <div class="slide">
-          <img src="" height="100" width="250" alt="" />
+          <img src="https://i.postimg.cc/QMMCkbWg/comic-hdlogo-40782.png" height="100" width="250" alt="XMen" />
         </div>
         <div class="slide">
-          <img src="" height="100" width="250" alt="" />
+          <img src="https://i.postimg.cc/GpbG0GT9/comic-hdlogo-40812.png" height="100" width="200" alt="Lobo" />
         </div>
         <div class="slide">
-          <img src="" height="100" width="250" alt="" />
+          <img src="https://i.postimg.cc/vTWMrg8w/logo-genshin-impact-42369.png" height="100" width="250" alt="Genshin" />
         </div>
         <div class="slide">
-          <img src="" height="100" width="250" alt="" />
+          <img src="https://i.postimg.cc/HkNKLWHw/starbucks-logo-png-1688.png" height="100" width="100" alt="Starbucks" />
         </div>
         <div class="slide">
-          <img src="" height="100" width="250" alt="" />
+          <img src="https://i.postimg.cc/7LPwrZHq/marvel-logo-34280.png" height="80" width="250" alt="Marvel Studios" />
         </div>
         <div class="slide">
-          <img src="" height="100" width="250" alt="" />
+          <img src="https://i.postimg.cc/RZNLscfm/comic-hdlogo-40813.png" height="100" width="250" alt="Comic Con" />
         </div>
         <div class="slide">
-          <img src="" height="100" width="250" alt="" />
+          <img src="https://i.postimg.cc/tJsgQCzs/vodafone-png-logo-8428.png" height="60" width="250" alt="Vodafone" />
         </div>
         <div class="slide">
-          <img src="" height="100" width="250" alt="" />
+          <img src="https://i.postimg.cc/QMMCkbWg/comic-hdlogo-40782.png" height="100" width="250" alt="XMen" />
         </div>
         <div class="slide">
-          <img src="" height="100" width="250" alt="" />
+          <img src="https://i.postimg.cc/GpbG0GT9/comic-hdlogo-40812.png" height="100" width="200" alt="Lobo" />
         </div>
         <div class="slide">
-          <img src="" height="100" width="250" alt="" />
+          <img src="https://i.postimg.cc/vTWMrg8w/logo-genshin-impact-42369.png" height="100" width="250" alt="Genshin" />
         </div>
         <div class="slide">
-          <img src="" height="100" width="250" alt="" />
+          <img src="https://i.postimg.cc/HkNKLWHw/starbucks-logo-png-1688.png" height="100" width="100" alt="Starbucks" />
         </div>
       </div>
     </div>
@@ -72,12 +72,14 @@
       <FooterC></FooterC>
     </div>
     <NavBar></NavBar>
+    <NavBar2></NavBar2>
     <SpinnerC v-if="isLoading" />
   </div>
 </template>
   
 <script>
 import NavBar from '@/components/NavBar.vue';
+import NavBar2 from '@/components/NavBar2.vue';
 import axios from 'axios';
 import SpinnerC from '../components/ProductSpinner.vue';
 import FooterC from '@/components/FooterC.vue';
@@ -117,6 +119,7 @@ export default {
   components: {
     SpinnerC,
     NavBar,
+    NavBar2,
     FooterC
   }
 };
@@ -125,7 +128,7 @@ export default {
 
 <style scoped>
 #products {
-  background: url(https://i.postimg.cc/kGQPpCX7/brett-jordan-Cs-ZQ50x-O35-I-unsplash.jpg) fixed;
+  background: url(https://i.postimg.cc/QNpHkVyM/Untitled.jpg) fixed;
   background-size: cover;
   background-position: center;
   width: 100%;
@@ -144,34 +147,31 @@ export default {
 }
 
 .slider {
-  margin: 50px auto;
-  width: 960px;
-  border-radius: 20px;
-  position: relative;
-  overflow: hidden;
-  background-color: #fff;
-  box-shadow: 0px 10px 20px -5px rgba(0, 0, 0, 0.125);
+  margin-top: 50px;
+  width: 100%;
+  overflow-x: hidden;
 }
-
 .slide-track {
   display: flex;
-  animation: scroll 400s linear infinite;
+  white-space: nowrap;
+  animation: scroll 69.420s linear infinite;
 }
-
 .slide {
   width: 250px;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 150px;
+  flex-shrink: 0;
+  margin-right: 20px;
 }
 
-.slide img {
-  width: 150%;
-  height: 150%;
-  object-fit: contain;
-  transform: scale(1.1)
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-250px * 7));
+  }
 }
+
 
 .container img:hover {
   width: 150%;

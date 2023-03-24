@@ -54,50 +54,15 @@
       </div>
     </div>
     <NavBar></NavBar>
+    <NavBar2></NavBar2>
   </div>
   <FooterC></FooterC>
 </template>
   
-<!-- <script>
-import NavBar from '../components/NavBar.vue'
-import axios from 'axios'
-export default {
-  components: {
-    NavBar
-  },
-  data() {
-    return {
-      payload: {
-        firstName: '',
-        lastName: '',
-        gender: '',
-        cellphoneNumber: '',
-        emailAdd: '',
-        userPass: '',
-        userProfile: '',
-        joinDate: ''
-      }
-    }
-  },
-  methods: {
-    registerUser() {
-      console.log("Submitting registration form...");
-      axios
-        .post('https://capstone-ecommerce.onrender.com/users', this.payload)
-        .then(response => {
-          console.log(response.data);
-          // handle successful registration
-        })
-        .catch(error => {
-          console.log(error);
-          // handle registration error
-        })
-    },
-  }
-}
-</script> -->
+
 <script>
 import NavBar from '../components/NavBar.vue'
+import NavBar2 from '@/components/NavBar2.vue';
 import FooterC from '@/components/FooterC.vue';
 // import axios from 'axios'
 
@@ -105,6 +70,7 @@ export default {
   name: "RegisterView",
   components: {
     NavBar,
+    NavBar2,
     FooterC
   },
   data() {
@@ -144,7 +110,6 @@ export default {
 </script>
 
 
-  
   <style scoped>
   #register {
     background: url(https://i.postimg.cc/6q5hXj2z/World-Book-Day-2000-x-2000-px-4.jpg) fixed;
@@ -333,4 +298,27 @@ export default {
       text-shadow: 0 0 10px #FD0363;
     }
   }
+
+  @media (max-width: 768px) {
+  .form {
+    width: 100%;
+  }
+  .form-row {
+    display: flex;
+    flex-direction: column;
+  }
+  .form-col {
+    width: 100%;
+  }
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-col {
+  width: 48%;
+}
   </style>

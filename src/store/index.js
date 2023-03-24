@@ -9,7 +9,7 @@ export default createStore({
     product: null,
     showSpinner: true,
     message: null,
-    cart: []
+    // cart: []
   },
   getters: {
   },
@@ -39,6 +39,8 @@ export default createStore({
       const res = await axios.post(`${aStoreURL}login`, payload)
       const { result, err, msg } = await res.data
       if (result) {
+        context.commit('setLoggedUser', result);
+        context.commit('setAdmin', result);
         context.commit('setUser', result)
         context.commit('setMessage', msg)
       } else {

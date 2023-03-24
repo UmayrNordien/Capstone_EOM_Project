@@ -31,12 +31,12 @@
                     </select>
                   </div>
                   <div class="col-sm-12 col-md-6">
-                    <input type="number" class="form-control input" v-model="phoneNumber" id="phoneNumber" placeholder="Phone Number">
+                    <input type="number" class="form-control input" v-model="cellphoneNumber" id="cellphoneNumber" placeholder="Phone Number">
                   </div>
                 </div>
                 <div class="mb-3 mx-auto row gap-2">
                   <div class="col-sm-12 col-md-6">
-                    <input type="email" class="form-control input" v-model="email" id="email" placeholder="Email">
+                    <input type="email" class="form-control input" v-model="emailAdd" id="email" placeholder="Email">
                   </div>
                   <div class="col-sm-12 col-md-6">
                     <input type="password" class="form-control input" v-model="userPass" id="userPass" placeholder="Password">
@@ -47,7 +47,7 @@
                     <input type="text" class="form-control input" v-model="userRole" id="userRole" placeholder="Role">
                   </div>
                   <div class="col-sm-12 col-md-6">
-                    <input type="url" class="form-control input" v-model="userImage" id="userImage" placeholder="Profile Image URL">
+                    <input type="url" class="form-control input" v-model="userProfile" id="userProfile" placeholder="Profile Image URL">
                   </div>
                                 </div>
 
@@ -75,12 +75,12 @@ export default {
         return {
             firstName: '',
             lastName: '',
-            phoneNumber: '',
-            email: '',
+            cellphoneNumber: '',
+            emailAdd: '',
             userPass: '',
             gender: '',
             userRole: '',
-            userImage: '',
+            userProfile: '',
             joinDate: '',
         }
     },
@@ -89,8 +89,8 @@ export default {
             return this.$store.dispatch("register", {
                 firstName: this.firstName,
                 lastName: this.lastName,
-                phoneNumber: this.phoneNumber,
-                email: this.email,
+                cellphoneNumber: this.cellphoneNumber,
+                emailAdd: this.emailAdd,
                 userPass: this.userPass,
                 gender: this.gender,
                 userRole: this.userRole,

@@ -10,7 +10,7 @@
                       <input type="text" class="field" name="email" placeholder="Your Email" required>
                       <input type="text" class="field" name="contact" placeholder="Phone" required>
                       <textarea placeholder="Message Us" name="text" id="message" class="field"></textarea>
-                      <button type="submit" class="send">Send</button>
+                      <button type="submit" class="send w-25">Send</button>
                   </form>
               </div>
           </div>
@@ -23,7 +23,6 @@
 <script>
 import NavBar from '../components/NavBar.vue'
 import FooterC from '@/components/FooterC.vue';
-
 export default {
   components: {
       NavBar,
@@ -45,7 +44,6 @@ export default {
   align-items: center;
   /* center vertically */
 }
-
 .container {
   border-radius: 1rem;
   position: relative;
@@ -56,7 +54,6 @@ export default {
   align-items: center;
   padding: 5px 25px;
 }
-
 .container:after {
   content: '';
   position: absolute;
@@ -68,7 +65,6 @@ export default {
   filter: blur(1000px);
   z-index: -1;
 }
-
 .contact-box {
   max-width: 1200px;
   display: grid;
@@ -84,7 +80,6 @@ export default {
   border: #b8b8b8 0.2rem solid;
   border-radius: 1rem;
 }
-
 .contact-box:hover {
   border: #FD0363 0.2em solid;
   /* border-radius: 2.5rem 0 2.5rem 0; */
@@ -92,7 +87,6 @@ export default {
   background: #212121;
   transform: scale(1.1)
 }
-
 .left {
   background: url(https://i.postimg.cc/9Fbn2ry7/hermes-rivera-SLrc-Ed-Epb-SA-unsplash.jpg) no-repeat center;
   background-size: cover;
@@ -100,17 +94,15 @@ export default {
   border-radius: 1rem;
 }
 .left:hover{
-  background: url(https://i.postimg.cc/J0WbD5Cz/brett-jordan-n-RWv-T3z5-Dnc-unsplash.jpg) no-repeat center;
+  background: url(https://i.postimg.cc/wv5RvvK3/jonathan-cooper-z-Mk-B6-Nor64s-unsplash.jpg) no-repeat center;
   background-size: cover;
   height: 100%;
   border-radius: 25px;
   transition: 5s ease-out;
 }
-
 .right {
   padding: 25px 40px;
 }
-
 span{
   margin-left: 5px;
   font-size: 18px;
@@ -124,7 +116,6 @@ span{
   text-shadow: 0 0 20px #FD0363, 0 0 30px #FD0363, 0 0 40px #FD0363, 0 0 50px #FD0363, 0 0 60px #FD0363, 0 0 70px #FD0363, 0 0 80px #FD0363;
   transition: 1s;
 }
-
 /* gradient color loop for h6 */
 .container:hover span {
   animation: gradient 2s linear infinite;
@@ -159,14 +150,12 @@ span{
     text-shadow: 0 0 10px #FD0363;
   }
 }
-
 h2 {
   position: relative;
   padding: 0 0 10px;
   margin-bottom: 10px;
   color: #9EA1D4;
 }
-
 h2:after {
   content: '';
   position: absolute;
@@ -178,7 +167,6 @@ h2:after {
   border-radius: 2px;
   background-color: #EB455F;
 }
-
 .field {
   width: 100%;
   margin-bottom: 22px;
@@ -189,11 +177,9 @@ h2:after {
   transition: .4s ease-in-out;
   transition: .3s;
 }
-
 textarea {
   min-height: 150px;
 }
-
 .contact-box input {
 color: white;
 }
@@ -203,7 +189,6 @@ background-color: #212121;
 .contact-box:hover textarea {
 background-color: #212121;
 }
-
 form button {
   width: 100%;
   background-color: transparent;
@@ -216,21 +201,16 @@ form button {
   transition: box-shadow ease 0.1s;
   box-shadow: 1.5px 1.5px 3px #0e0e0e, -1.5px -1.5px 3px rgb(95 94 94 / 25%), inset 0px 0px 0px #0e0e0e, inset 0px -0px 0px #5f5e5e;
 }
-
 form button:active {
   box-shadow: 0px 0px 0px #0e0e0e, 0px 0px 0px rgb(95 94 94 / 25%), inset 3px 3px 4px #0e0e0e, inset -3px -3px 4px #5f5e5e;
 }
-
 .container:hover .send {
   color: #FD0363;
 }
-
-
 @media screen and (max-width: 880px) {
   .contact-box {
       grid-template-columns: 1fr;
   }
-
   .left {
       height: 200px;
   }

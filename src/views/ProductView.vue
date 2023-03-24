@@ -148,7 +148,7 @@ div {
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card h-100">
+                    <div class="card">
                         <img class="card-img-top mx-auto mt-5" :src="product?.imgURL" :alt="product?.name"
                             style="width: 100%; max-height: 300px; object-fit: contain;" />
                         <div class="card-body">
@@ -184,6 +184,9 @@ export default {
         product: function () {
             return this.$store.state.product;
         },
+        loggedUser () {
+            return this.$store.state.loggedUser
+        },
     },
     created() {
         this.$store.dispatch("fetchProduct", this.$route.params.id);
@@ -201,7 +204,7 @@ export default {
 }
 
 .card {
-    margin-top: 10vh;
+    margin-top: 7vh;
     background: -webkit-linear-gradient(to left, #fffcdc, #212121);
     background: linear-gradient(to left, #8d8d8d, #212121);
 
@@ -239,7 +242,7 @@ export default {
     background-color: transparent;
     border-top: none;
     text-align: center;
-    padding-top: 0;
+    padding-top: 10px;
 }
 
 .container img:hover {

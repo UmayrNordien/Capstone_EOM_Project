@@ -33,7 +33,7 @@
       </div>
       <div class="container">
         <div class="row">
-          <div class="col-md-8 col-sm-6 col-xs-12">
+          <div class="col-md-8 col-sm-6 col-xs-12 mx-auto">
             <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by Umayr Nordien
             </p>
           </div>
@@ -69,7 +69,7 @@ export default {
 
 .site-footer
 {
-  background-color:#26272b;
+  background-color:#323232;
   padding:45px 0 20px;
   font-size:15px;
   line-height:24px;

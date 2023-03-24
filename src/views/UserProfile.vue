@@ -8,17 +8,20 @@
       <p><i class="bi bi-calendar"></i> {{ user.joinDate }}</p>
     </div>
     <NavBar></NavBar>
+    <NavBar2></NavBar2>
   </div>
   <FooterC></FooterC>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue';
+import NavBar2 from '@/components/NavBar2.vue';
 import FooterC from '@/components/FooterC.vue';
 
 export default {
   components: {
     NavBar,
+    NavBar2,
     FooterC
   },
   data() {
