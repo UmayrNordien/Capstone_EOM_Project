@@ -281,82 +281,97 @@ class Order {
 }
 
 
-// //============= Cart =============//
-// class Cart {
-//     // Fetch all carts
-//     static fetchCart(req, res) {
-//       const query = 'SELECT * FROM Cart';
-//       db.query(query, (err, results) => {
-//         if (err) {
-//           console.error(err);
-//           return res.status(500).json({ message: 'Server error' });
-//         }
-//         res.status(200).json({ results });
-//       });
-//     }
-  
-//     // Fetch a single cart by id
-//     static fetchCart(req, res) {
-//       const { id } = req.params;
-//       const query = 'SELECT * FROM Cart WHERE cartID = ?';
-//       db.query(query, [id], (err, results) => {
-//         if (err) {
-//           console.error(err);
-//           return res.status(500).json({ message: 'Server error' });
-//         }
-//         if (!results.length) {
-//           return res.status(404).json({ message: 'Cart not found' });
-//         }
-//         res.status(200).json({ result: results[0] });
-//       });
-//     }
-  
-//     // Add a new cart
-//     static addCart(req, res) {
-//       const { user_id, id, quantity } = req.body;
-//       const query = 'INSERT INTO Cart (user_id, id, quantity) VALUES (?, ?, ?)';
-//       db.query(query, [user_id, id, quantity], (err, results) => {
-//         if (err) {
-//           console.error(err);
-//           return res.status(500).json({ message: 'Server error' });
-//         }
-//         res.status(201).json({ message: 'Cart created successfully', cartID: results.insertId });
-//       });
-//     }
-  
-//     // Update a cart by id
-//     static updateCart(req, res) {
-//       const { id } = req.params;
-//       const { user_id, id, quantity } = req.body;
-//       const query = 'UPDATE Cart SET user_id = ?, id = ?, quantity = ? WHERE cartID = ?';
-//       db.query(query, [user_id, id, quantity, id], (err, results) => {
-//         if (err) {
-//           console.error(err);
-//           return res.status(500).json({ message: 'Server error' });
-//         }
-//         if (!results.affectedRows) {
-//           return res.status(404).json({ message: 'Cart not found' });
-//         }
-//         res.status(200).json({ message: 'Cart updated successfully' });
-//       });
-//     }
-  
-//     // Delete a cart by id
-//     static deleteCart(req, res) {
-//       const { id } = req.params;
-//       const query = 'DELETE FROM Cart WHERE cartID = ?';
-//       db.query(query, [id], (err, results) => {
-//         if (err) {
-//           console.error(err);
-//           return res.status(500).json({ message: 'Server error' });
-//         }
-//         if (!results.affectedRows) {
-//           return res.status(404).json({ message: 'Cart not found' });
-//         }
-//         res.status(200).json({ message: 'Cart deleted successfully' });
-//       });
-//     }
-// }
+class Cart {
+    fetchCart(req, res) {
+        const strQry =
+        `
+        SELECT productName, price, imgURL 
+        FROM users
+        inner join cart on users.userID = cart.userID
+        inner join products on cart.productID = products.productID
+        where cart.userID = ${req.params.id};
+        `;
+        DB.query(strQry, (err, results) => {
+            if (err) throw err;
+            res.status(200).json({
+                results: results
+            })
+        });
+    }
+    addCart(req, res) {
+        const strQry =
+            `
+        INSERT INTO cart
+        SET ?;
+        `;
+        DB.query(strQry, [req.body],
+            (err) => {
+                if (err) {
+                    res.status(400).json({
+                        err: "Unable to add to cart."
+                    });
+                } else {
+                    res.status(200).json({
+                        msg: "Successfully added to cart."
+                    });
+                }
+            }
+        );
+
+    }
+    updateCart(req, res) {
+        const querySt =
+            `
+        UPDATE cart
+        SET ?
+        WHERE cartID = ?
+        `;
+        DB.query(querySt, [req.body, req.params.id],
+            (err) => {
+                if (err) {
+                    res.status(400).json({
+                        err: "Could not update cart."
+                    });
+                } else {
+                    res.status(200).json({
+                        msg: "Cart successfully updated"
+                    });
+                }
+            }
+        );
+
+    }
+    deleteItemCart(req, res) {
+        const querySt =
+            `
+        DELETE FROM cart
+        WHERE productID = ?;
+        `;
+
+        DB.query(querySt, [req.params.id],
+            (err) => {
+                if (err) res.status(400).json({err: "Record not found"});
+                res.status(200).json({
+                    msg: "Item was removed."
+                });
+            })
+    }
+    deleteCart(req, res) {
+        const querySt =
+            `
+        DELETE FROM cart
+        WHERE userID = ?;
+        `;
+
+        DB.query(querySt, [req.params.id],
+            (err) => {
+                if (err) res.status(400).json({err: "Record not found"});
+                res.status(200).json({
+                    msg: "Cart has been cleared."
+                });
+            })
+    }
+}
 
 module.exports = {
     User, 
