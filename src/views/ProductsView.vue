@@ -50,7 +50,18 @@
 
     <div class="container">
       
+      <!--FILTER/SORT-->
       <input class="mb-5" v-model="searchQuery" placeholder="Search...">
+      <select class="ms-2" v-model="sortDir">
+        <option value="asc">Sort by Price (Ascending)</option>
+        <option value="desc">Sort by Price (Descending)</option>
+      </select>
+      <select class="ms-2" v-model="selectedCategory">
+        <option value="">All Categories</option>
+        <option value="">Comic</option>
+        <option value="">Manga</option>
+        <option v-for="category in categories" :value="category" :key="category">{{ category }}</option>
+      </select>
 
       <div class="row" v-if="filteredProducts.length > 0">
         <div v-for="product in filteredProducts" :key="product.name" class="col-lg-4 col-md-6 mb-4">
@@ -237,9 +248,9 @@ export default {
   background-color: transparent;
 }
 
-input{
-  height: 30px;
-  width: 190px;
+input, select{
+  height: 40px;
+  width: 250px;
   text-align: center;
   border: none;
   border-radius: 1rem;

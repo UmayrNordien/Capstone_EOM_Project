@@ -260,8 +260,3 @@ export default {
     /* how to make it so that the border wraps around the image with no space or the image having this border upon hover */
 }
 </style>
-  
-
-<!--ERRORS:-->
-<!--adding ? on the img removes the error Cannot read properties of null (reading 'imgURL')-->
-<!--removing the alt = no error-->
