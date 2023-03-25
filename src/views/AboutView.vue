@@ -15,42 +15,7 @@
       <img src="https://i.postimg.cc/VsTFYYqM/Untitled-12.jpg" alt="song">
     </label>
   </div>
-  <!-- <div class="player">
-    <div class="upper-part">
-      <div class="play-icon">
-        <svg width="20" height="20" fill="#2992dc" stroke="#2992dc" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-play" viewBox="0 0 24 24">
-          <defs/>
-          <path d="M5 3l14 9-14 9V3z"/>
-        </svg>
-      </div>
-      <div class="info-area" id="test">
-        <label class="song-info" id="song-info-1">
-          <div class="title">Bunker</div>
-          <div class="sub-line">
-            <div class="subtitle">Balthazar</div>
-            <div class="time">4.05</div>
-          </div>
-        </label>
-        <label class="song-info" id="song-info-2">
-          <div class="title">Words Remain</div>
-          <div class="sub-line">
-            <div class="subtitle">Moderator</div>
-            <div class="time">4.05</div>
-          </div>
-        </label>
-        <label class="song-info" id="song-info-3">
-          <div class="title">Falling Out</div>
-          <div class="sub-line">
-            <div class="subtitle">Otzeki</div>
-            <div class="time">4.05</div>
-          </div>
-        </label>
-      </div>
-    </div>
-    <div class="progress-bar">
-      <span class="progress"></span>
-    </div>
-  </div> -->
+  
 </div>
     <NavBar></NavBar>
   </div>
@@ -67,11 +32,6 @@ export default {
     NavBar,
     FooterC
 }
-
-// $('input').on('change', function() {
-//   $('body').toggleClass('blue');
-// });
-
 }
 </script>
 
@@ -179,14 +139,6 @@ img {
     box-shadow: 0px 0px 5px 0px rgba(81, 81, 81, 0.47);
   }
 }
-
-.player {
-  background-color: #fff;
-  border-radius: 8px;
-  min-width: 320px;
-  padding: 16px 10px;
-}
-
 .upper-part {
   position: relative;
   display: flex;
@@ -264,5 +216,34 @@ img {
 
 #item-3:checked ~ .player #test  {
   transform: translateY(-80px);
+}
+
+@media screen and (max-width: 669px) {
+.card {
+    min-width: 330px;
+    margin: 10px;
+    margin-left: 80px;
+}
+}
+@media screen and (max-width: 492px) {
+.card {
+    min-width: 330px;
+    margin: 10px;
+    margin-left: 40px;
+}
+}
+@media screen and (max-width: 435px) {
+.card {
+    min-width: 360px;
+    margin: 10px;
+    margin-left: 5px;
+}
+}
+@media screen and (max-width: 383px) {
+.card {
+    min-width: 360px;
+    margin: 10px;
+    margin-left: -3px;
+}
 }
 </style>

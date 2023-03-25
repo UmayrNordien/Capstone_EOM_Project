@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-sm-12 col-md-6">
             <h6>About</h6>
-            <p class="text-justify">The Archives is a premier online store for comic and manga enthusiasts, offering an extensive collection of classic and contemporary titles from around the world. Whether you're a hardcore collector or just starting out on your comic book journey, The Archives has everything you need to fuel your passion for this exciting art form. Our team of experts carefully curates our inventory to ensure that we only offer the highest quality comics and manga, so you can rest assured that you're getting the very best. With fast and reliable shipping, easy ordering, and unparalleled customer service, The Archives is your go-to destination for all things comic and manga.</p>
+            <p class="text-about">The Archives is a premier online store for comic and manga enthusiasts, offering an extensive collection of classic and contemporary titles from around the world. Whether you're a hardcore collector or just starting out on your comic book journey, The Archives has everything you need to fuel your passion for this exciting art form. Our team of experts carefully curates our inventory to ensure that we only offer the highest quality comics and manga, so you can rest assured that you're getting the very best. With fast and reliable shipping, easy ordering, and unparalleled customer service, The Archives is your go-to destination for all things comic and manga.</p>
           </div>
 
           <div class="col-xs-6 col-md-3">
@@ -40,10 +40,10 @@
 
           <div class="col-md-4 col-sm-6 col-xs-12">
             <ul class="social-icons">
-              <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-              <li><a class="twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-              <li><a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a></li>
-              <li><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>   
+              <li><a class="facebook" href="#"><i class="bi bi-facebook"></i></a></li>
+              <li><a class="twitter" href="#"><i class="bi bi-twitter"></i></a></li>
+              <li><a class="instagram" href="#"><i class="bi bi-instagram"></i></a></li>
+              <li><a class="linkedin" href="#"><i class="bi bi-linkedin"></i></a></li>   
             </ul>
           </div>
         </div>
@@ -100,6 +100,10 @@ export default {
 {
   color:#3366cc;
   text-decoration:none;
+}
+
+.text-about{
+  color: white;
 }
 .footer-links
 {
@@ -175,19 +179,20 @@ export default {
   margin-right:15px;
   text-transform:uppercase;
   color:#96a2b2;
-  font-weight:700;
-  font-size:13px
+  font-size:16px
 }
 .social-icons a{
   background-color:#eceeef;
   color:#818a91;
   font-size:16px;
   display:inline-block;
+  
   line-height:44px;
   width:44px;
   height:44px;
   text-align:center;
   margin-right:8px;
+
   border-radius:100%;
   -webkit-transition:all .2s linear;
   -o-transition:all .2s linear;
@@ -207,19 +212,19 @@ export default {
 }
 .social-icons a.facebook:hover
 {
-  background-color:#3b5998
+  background-color:#FD0363
 }
 .social-icons a.twitter:hover
 {
-  background-color:#00aced
+  background-color:#CC095D
 }
 .social-icons a.linkedin:hover
 {
-  background-color:#007bb6
+  background-color:#9C1057
 }
-.social-icons a.dribbble:hover
+.social-icons a.instagram:hover
 {
-  background-color:#ea4c89
+  background-color:#6B1650
 }
 @media (max-width:767px)
 {

@@ -31,10 +31,11 @@
               </td>
               <td>
                 <UpdateProduct :product="product" class="btn btn-success"/>
-                <button class="btn btn-outline-danger" v-on:click="deleteProduct(product)">X</button>
+                <button class="btn btn-outline-danger" @click="$event =>this.$store.dispatch('deleteProduct', product.id)">X</button>
               </td>
             </tr>
           </tbody>
+        
         </table>
         <AddProduct/>
       </div>
@@ -66,7 +67,7 @@
               </td>
               <td>
                 <UpdateUser :userDetails="user" class="btn outline-dark"/>
-                <button class="btn btn-outline-danger" v-on:click="deleteUser(user)">X</button>
+                <button class="btn btn-outline-danger" @click="$event =>this.$store.dispatch('deleteUser', user.userID)">X</button>
               </td>
             </tr>
           </tbody>
@@ -109,14 +110,19 @@ export default{
         const products = computed(() => store.state.products);
         
         let deleteProduct = async (product) => {
-            await store.dispatch('deleteProduct', product.prodID);
+            await store.dispatch('deleteProduct', product.id);
             await store.dispatch('fetchProducts');
+        }
+        let deleteUser = async (user) => {
+            await store.dispatch('deleteUser', user.userID);
+            await store.dispatch('fetchUsers');
         }
         const spinner = computed(() => store.state.spinner);
         return{
             users,
             products,
             deleteProduct,
+            deleteUser,
             spinner
         }
     }

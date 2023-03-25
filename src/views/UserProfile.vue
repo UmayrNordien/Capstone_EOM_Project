@@ -27,12 +27,12 @@ export default {
   data() {
     return {
       user: {
-        userProfile: "https://i.postimg.cc/2657mzQk/placeholder-Admin-Profile.png",
-        firstName: "John",
-        lastName: "Doe",
-        emailAdd: "johndoe@example.com",
-        userRole: "Member",
-        joinDate: "March 15, 2023",
+        userProfile: "https://i.postimg.cc/9M3sr8LV/placeholder-Admin-Profile.png",
+        firstName: "Umayr",
+        lastName: "Nordien",
+        emailAdd: "umayrnordien@gmail.com",
+        userRole: "Admin",
+        joinDate: "2023-01-01",
       },
     };
   },

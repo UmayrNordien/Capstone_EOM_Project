@@ -40,7 +40,7 @@ export default createStore({
       const { result, err, msg } = await res.data
       if (result) {
         context.commit('setLoggedUser', result);
-        context.commit('setAdmin', result);
+        // context.commit('setAdmin', result);
         context.commit('setUser', result)
         context.commit('setMessage', msg)
       } else {
@@ -67,7 +67,7 @@ export default createStore({
       }
     },
     async updateUser(context, payload) {
-      let res = await axios.put(`${aStoreURL}users/${payload.id}`, payload);
+      let res = await axios.put(`${aStoreURL}users/${payload.userID}`, payload);
       let {msg, err} = await res.data;
       if(msg) {
         context.dispatch('fetchUsers')
@@ -75,14 +75,22 @@ export default createStore({
         context.commit('setMessage', err);
       }
     },
-    async deleteUser(context, id) {
-      console.log(`Delete: ${id}`);
-      let res = await axios.delete(`${aStoreURL}user/${id}`);
-      let {msg, err} = await res.data;
-      if(msg) {
-        context.dispatch('fetchUsers');
-      }else {
-        context.commit('setMessage', err);
+    async deleteUser(context, userID) {
+      console.log(`Delete: ${userID}`);
+      if (typeof userID === 'undefined') {
+        context.commit('setMessage', 'User ID is undefined');
+        return;
+      }
+      try {
+        let res = await axios.delete(`${aStoreURL}user/${userID}`);
+        let {msg, err} = await res.data;
+        if(msg) {
+          context.dispatch('fetchUsers');
+        }else {
+          context.commit('setMessage', err);
+        }
+      } catch (error) {
+        context.commit('setMessage', error.message);
       }
     },
     async addProduct(context, payload) {
