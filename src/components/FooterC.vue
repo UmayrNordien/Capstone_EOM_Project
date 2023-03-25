@@ -120,7 +120,7 @@ export default {
 }
 .footer-links a:active,.footer-links a:focus,.footer-links a:hover
 {
-  color:#3366cc;
+  color:#FD0363;
   text-decoration:none;
 }
 .footer-links.inline li

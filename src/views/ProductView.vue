@@ -145,54 +145,66 @@ div {
 
 <template>
     <div id="product">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card">
-                        <img class="card-img-top mx-auto mt-5" :src="product?.imgURL" :alt="product?.name"
-                            style="width: 100%; max-height: 300px; object-fit: contain;" />
-                        <div class="card-body">
-                            <h4 class="card-title">{{ product?.name }}</h4>
-                            <h6>[{{ product?.category }}]</h6>
-                            <h5>R{{ product?.price }}</h5>
-                            <p class="card-text">{{ product?.description }}</p>
-                        </div>
-                        <div class="card-footer">
-                            <router-link to="/cart">
-                                <a href="#" class="btn btn-outline-light">Add To Cart</a>
-                            </router-link>
-                        </div>
-                    </div>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card">
+              <img class="card-img-top mx-auto mt-5" :src="product?.imgURL" :alt="product?.name"
+                style="width: 100%; max-height: 300px; object-fit: contain;" />
+              <div class="card-body">
+                <h4 class="card-title">{{ product?.name }}</h4>
+                <h6>[{{ product?.category }}]</h6>
+                <h5>R{{ product?.price }}</h5>
+                <p class="card-text">{{ product?.description }}</p>
+              </div>
+              <div class="card-footer">
+                <div @click="addToCart">
+                  <a href="#" class="btn btn-outline-light">Add To Cart</a>
                 </div>
+                <!-- <router-link to="/cart">
+                  <a href="#" class="btn btn-outline-light">Add To Cart</a>
+                </router-link> -->
+              </div>
             </div>
+          </div>
         </div>
-        <NavBar/>
+      </div>
+      <NavBar/>
+      <NavBar2></NavBar2>
     </div>
     <FooterC></FooterC>
-</template>
+  </template>
   
-<script>
-import NavBar from "@/components/NavBar.vue";
-import FooterC from "@/components/FooterC.vue";
-
-export default {
+  <script>
+  import NavBar from "@/components/NavBar.vue";
+  import NavBar2 from "@/components/NavBar2.vue";
+  import FooterC from "@/components/FooterC.vue";
+  
+  export default {
     components: {
-        NavBar,
-        FooterC
+      NavBar,
+      NavBar2,
+      FooterC
     },
     computed: {
-        product: function () {
-            return this.$store.state.product;
-        },
-        loggedUser () {
-            return this.$store.state.loggedUser
-        },
+      product: function () {
+        return this.$store.state.product;
+      },
+      loggedUser () {
+        return this.$store.state.loggedUser
+      },
     },
     created() {
-        this.$store.dispatch("fetchProduct", this.$route.params.id);
+      this.$store.dispatch("fetchProduct", this.$route.params.id);
     },
-};
-</script>
+    methods: {
+      addToCart() {
+        // add code to add item to cart here
+        alert("Item added to cart!");
+      }
+    }
+  };
+  </script>
   
 <style scoped>
 #product {
@@ -204,7 +216,7 @@ export default {
 }
 
 .card {
-    margin-top: 7vh;
+    margin-top: 10vh;
     background: -webkit-linear-gradient(to left, #fffcdc, #212121);
     background: linear-gradient(to left, #8d8d8d, #212121);
 
