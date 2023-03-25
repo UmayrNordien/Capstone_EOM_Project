@@ -6,12 +6,12 @@
         <form class="form" @submit.prevent="login">
           <span class="title">Login</span>
           <div class="form_control">
-            <input required v-model="emailAdd" class="input" type="email">
+            <input required v-model="payload.emailAdd" class="input" type="email">
             <label class="label">Email</label>
           </div>
 
           <div class="form_control">
-            <input required v-model="userPass" class="input" type="password">
+            <input required v-model="payload.userPass" class="input" type="password">
             <label class="label">Password</label>
           </div>
           <button type="submit" class="login" v-on:click.prevent="login(payload)">Login</button>
@@ -35,8 +35,8 @@ export default {
 data() {
   return {
     payload: {
-      emailAdd: '',
-      userPass: ''
+      emailAdd: "",
+      userPass: ""
     },
   }
 },
