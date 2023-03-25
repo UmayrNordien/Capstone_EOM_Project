@@ -280,7 +280,7 @@ class Order {
     }
 }
 
-
+//============= Cart =============//
 class Cart {
     fetchCart(req, res) {
         const strQry =
@@ -344,7 +344,7 @@ class Cart {
     deleteItemCart(req, res) {
         const querySt =
             `
-        DELETE FROM cart
+        DELETE FROM Cart
         WHERE productID = ?;
         `;
 
@@ -359,7 +359,7 @@ class Cart {
     deleteCart(req, res) {
         const querySt =
             `
-        DELETE FROM cart
+        DELETE FROM Cart
         WHERE userID = ?;
         `;
 
@@ -373,10 +373,12 @@ class Cart {
     }
 }
 
+
+
 module.exports = {
     User, 
     Product,
     Order,
-    // Cart
+    Cart
 }
 

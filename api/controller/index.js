@@ -2,16 +2,15 @@ const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
 const router = express.Router();
-const { User, Product, Order } = require('../model');
+const { User, Product, Order, Cart } = require('../model');
 const user = new User();
 const product = new Product();
 const order = new Order();
-
+const cart = new Cart();
 
 router.get('/', (req, res)=>{
     res.status(200).sendFile(path.join(__dirname, '../view/index.html'));
 });
-
 
 // =========USER's Router========
 // Login
@@ -40,9 +39,7 @@ router.delete('/user/:id', (req, res)=>{
     user.deleteUser(req, res);
 });
 
-
 // =====Products======
-//check if up to date
 // View all products
 router.get('/products', (req, res)=> {
     product.fetchProducts(req, res);
@@ -69,7 +66,6 @@ router.delete('/product/:id',
 (req, res)=> {
     product.deleteProduct(req, res);
 });
-
 
 // =====Orders======
 // View all orders
@@ -98,5 +94,27 @@ router.delete('/order/:id',
 (req, res)=> {
     order.deleteOrder(req, res);
 });
+
+// // =====Cart======
+// // View the contents of a cart for a given user ID
+// router.get('/cart/:id', (req, res) => {
+//   cart.fetchCart(req, res);
+// });
+// // Add an item to a cart for a given user ID
+// router.post('/cart', bodyParser.json(), (req, res) => {
+//   cart.addCart(req, res);
+// });
+// // Update the quantity of an item in a cart for a given user ID
+// router.put('/cart/:id', bodyParser.json(), (req, res) => {
+//   cart.updateCart(req, res);
+// });
+// // Delete an item from a cart for a given user ID
+// router.delete('/cart/:id', (req, res) => {
+//   cart.deleteItemCart(req, res);
+// });
+// // Delete a cart for a given user ID
+// router.delete('/cart/clear/:id', (req, res) => {
+//   cart.deleteCart(req, res);
+// });
 
 module.exports = router;
